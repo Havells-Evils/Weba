@@ -1,624 +1,13 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE | Luxury Emporium</title>
+    <title>LUXE | Luxury Collections</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0A192F;
-            --text-color: #F5F3EF;
-            --primary-color: #FFD700;
-            --accent-color: #B8860B;
-            --hover-color: #FFE55C;
-            --section-bg: #162447;
-            --overlay: rgba(255,255,255,0.1);
-            --card-bg: #1e2a4a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            background: rgba(10, 25, 47, 0.97);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .toggle-btn {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-color);
-            padding: 0.8rem 1.8rem;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .toggle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                        url('https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1778&q=80') center/cover;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-        }
-
-        .hero-content h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .cta-btn {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-color);
-            padding: 1.2rem 3rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Collections Section */
-        .section {
-            padding: 6rem 5%;
-        }
-
-        .section-heading {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-heading:after {
-            content: '';
-            position: absolute;
-            bottom: -1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--primary-color);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin: 2rem 0;
-        }
-
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.8rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .product-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            min-height: 42px;
-        }
-
-        .product-card .product-description {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            margin-bottom: 1.2rem;
-            flex-grow: 1;
-            line-height: 1.6;
-        }
-
-        .product-price {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin: 0.5rem 0 1.2rem;
-            font-weight: 600;
-        }
-
-        .product-link {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--primary-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            text-align: center;
-        }
-
-        .product-link:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Admin Styles */
-        .admin-login {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
-        }
-
-        .admin-login button {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-color);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .admin-login button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .admin-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1002;
-            backdrop-filter: blur(5px);
-        }
-
-        .admin-content {
-            background: var(--section-bg);
-            margin: 10% auto;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            position: relative;
-        }
-
-        .close {
-            color: #aaa;
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 32px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close:hover {
-            color: var(--primary-color);
-        }
-
-        .admin-dashboard {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            z-index: 1003;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .logout-btn {
-            background: #dc3545;
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
-        }
-
-        .admin-container {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .product-form-container {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .product-list-container {
-            flex: 2;
-            min-width: 300px;
-        }
-
-        .product-form {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.2);
-            color: var(--text-color);
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .form-submit {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-color);
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            width: 100%;
-            transition: all 0.3s;
-        }
-
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .product-list {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .admin-product-item {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .admin-product-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .admin-product-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-        }
-
-        .admin-product-item p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .edit-btn, .delete-btn {
-            flex: 1;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .edit-btn {
-            background: rgba(0, 123, 255, 0.2);
-            color: #007bff;
-            border: 1px solid rgba(0, 123, 255, 0.3);
-        }
-
-        .delete-btn {
-            background: rgba(220, 53, 69, 0.2);
-            color: #dc3545;
-            border: 1px solid rgba(220, 53, 69, 0.3);
-        }
-
-        .edit-btn:hover {
-            background: rgba(0, 123, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .delete-btn:hover {
-            background: rgba(220, 53, 69, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: #07152a;
-            padding: 4rem 5% 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .footer-section p {
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-            
-            .admin-container {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-            
-            .section-heading {
-                font-size: 2.2rem;
-            }
-            
-            .products-grid, .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .cta-btn, .toggle-btn, .admin-login button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-            
-            .section {
-                padding: 4rem 5%;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -627,146 +16,66 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#collections">Collections</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="toggle-btn" onclick="toggleTheme()">
-            <i class="fas fa-moon"></i> Dark Mode
-        </button>
+        <button class="toggle-btn" onclick="toggleTheme()">Dark Mode</button>
     </nav>
-
-    <!-- Admin Login Button -->
-    <div class="admin-login">
-        <button onclick="showAdminPanel()">
-            <i class="fas fa-lock"></i> Admin
-        </button>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-content">
-            <span class="close" onclick="closeAdminPanel()">&times;</span>
-            <h2>Admin Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter password" required>
-                </div>
-                <button type="submit" class="form-submit">Login</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Dashboard -->
-    <div class="admin-dashboard" id="adminDashboard">
-        <div class="dashboard-header">
-            <h2>Product Management</h2>
-            <button class="logout-btn" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </div>
-        
-        <div class="admin-container">
-            <div class="product-form-container">
-                <div class="product-form">
-                    <h3>Add/Edit Product</h3>
-                    <form id="productForm">
-                        <input type="hidden" id="productId">
-                        <div class="form-group">
-                            <label for="productName">Product Name</label>
-                            <input type="text" id="productName" placeholder="Enter product name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productPrice">Price ($)</label>
-                            <input type="number" id="productPrice" placeholder="Enter price" min="0" step="0.01" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productImage">Image URL</label>
-                            <input type="url" id="productImage" placeholder="Enter image URL" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productCategory">Category</label>
-                            <select id="productCategory" required>
-                                <option value="">Select category</option>
-                                <option value="watches">Watches</option>
-                                <option value="jewelry">Jewelry</option>
-                                <option value="fashion">Fashion</option>
-                                <option value="accessories">Accessories</option>
-                                <option value="home">Home Decor</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="productDescription">Description</label>
-                            <textarea id="productDescription" placeholder="Enter product description" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="productLink">Product Link</label>
-                            <input type="url" id="productLink" placeholder="Enter product link" required>
-                        </div>
-                        <button type="submit" class="form-submit">Save Product</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="product-list-container">
-                <div class="product-list">
-                    <h3>Manage Products</h3>
-                    <div class="product-grid" id="productList">
-                        <!-- Products will be loaded here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Timeless Elegance, Modern Luxury</h1>
-            <p>Discover our exclusive collection of handcrafted luxury items</p>
-            <button class="cta-btn" onclick="window.location.href='#collections'">Explore Collection</button>
+            <h1>Curated Luxury</h1>
+            <p>Experience the Extraordinary</p>
+            <button class="cta-btn" onclick="window.location.href='#collections'">Explore Collections</button>
         </div>
     </section>
 
     <!-- Collections Section -->
-    <section class="section" id="collections">
-        <h2 class="section-heading">Exclusive Collections</h2>
-        <div class="products-grid" id="productsContainer">
-            <!-- Products will be loaded here -->
+    <section class="collections" id="collections">
+        <h2 class="section-heading">Signature Collections</h2>
+        <div class="products-grid">
+            <!-- Product Cards will be dynamically added -->
+        </div>
+        <div class="see-more-container">
+            <button class="see-more-btn" onclick="window.location.href='collections.html'">View Full Collection</button>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about" style="background: var(--section-bg);">
-        <div class="section-heading">Our Heritage</div>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <p style="font-size: 1.2rem; line-height: 1.8; opacity: 0.9;">
-                Founded in 1920, LUXE has been crafting exceptional luxury goods for over a century. 
-                Each piece in our collection is meticulously handcrafted by master artisans using 
-                only the finest materials. Our commitment to excellence and timeless design has 
-                made us a symbol of sophistication worldwide.
-            </p>
-            <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
-                <div style="text-align: center;">
-                    <i class="fas fa-gem" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 15px;"></i>
-                    <h3>Exceptional Quality</h3>
-                    <p>Only the finest materials</p>
-                </div>
-                <div style="text-align: center;">
-                    <i class="fas fa-hand-sparkles" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 15px;"></i>
-                    <h3>Handcrafted</h3>
-                    <p>Meticulously crafted by artisans</p>
-                </div>
-                <div style="text-align: center;">
-                    <i class="fas fa-globe" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 15px;"></i>
-                    <h3>Worldwide Delivery</h3>
-                    <p>Delivered to your doorstep</p>
-                </div>
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="experience-content">
+            <div class="experience-text">
+                <h2>The LUXE Experience</h2>
+                <p>Immerse yourself in unparalleled luxury with our exclusive concierge service, private viewings, and personalized consultations.</p>
+                <ul class="experience-list">
+                    <li><i class="fas fa-gem"></i> Bespoke Services</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Concierge</li>
+                    <li><i class="fas fa-globe"></i> Worldwide Delivery</li>
+                </ul>
             </div>
+            <div class="experience-image">
+                <img src="https://source.unsplash.com/random/800x600?luxury-interior" alt="Luxury Experience">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 class="section-heading">Contact Us</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
         </div>
     </section>
 
@@ -775,229 +84,86 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>LUXE</h3>
-                <p>Timeless elegance and modern luxury for the discerning customer.</p>
+                <p>Worldwide Luxury Consultancy</p>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#home">Home</a></p>
-                <p><a href="#collections">Collections</a></p>
-                <p><a href="#about">About Us</a></p>
-                <p><a href="#contact">Contact</a></p>
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
             <div class="footer-section">
-                <h3>Contact</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Paris</p>
-                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                <p><i class="fas fa-envelope"></i> contact@luxe.com</p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
+                <h4>Connect</h4>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-weixin"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 LUXE. All rights reserved. Crafted with <i class="fas fa-heart" style="color: #dc3545;"></i></p>
+            <p>&copy; 2025 LUXE. All rights reserved</p>
         </div>
     </footer>
 
     <script>
-        // Initialize products from localStorage or with sample data
-        let products = JSON.parse(localStorage.getItem('products')) || [
-            {
-                id: '1',
-                name: 'Platinum Chronograph Watch',
-                price: '24999',
-                image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80',
-                category: 'watches',
-                description: 'Handcrafted platinum watch with diamond accents and Swiss movement',
-                link: '#'
-            },
-            {
-                id: '2',
-                name: 'Diamond Solitaire Necklace',
-                price: '18999',
-                image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
-                category: 'jewelry',
-                description: 'Exquisite diamond solitaire necklace set in 18k white gold',
-                link: '#'
-            },
-            {
-                id: '3',
-                name: 'Designer Leather Handbag',
-                price: '3499',
-                image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80',
-                category: 'fashion',
-                description: 'Hand-stitched Italian leather handbag with gold hardware',
-                link: '#'
-            }
+        // Dynamic Product Loading
+        const productsGrid = document.querySelector('.products-grid');
+        const products = [
+            {name: 'Platinum Chronograph', price: '24,999', image: 'luxury-watch'},
+            {name: 'Diamond Necklace', price: '89,999', image: 'diamond-jewelry'},
+            {name: 'Limited Edition Supercar', price: '2,450,000', image: 'luxury-car'},
+            {name: 'Designer Handbag', price: '18,500', image: 'designer-bag'},
+            {name: 'Fine Art Sculpture', price: '450,000', image: 'art-sculpture'},
+            {name: 'Luxury Yacht', price: '8,500,000', image: 'yacht'}
         ];
-        
-        let currentProductId = null;
-        let isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
 
-        // DOM Elements
-        const adminModal = document.getElementById('adminModal');
-        const adminDashboard = document.getElementById('adminDashboard');
-        const productsContainer = document.getElementById('productsContainer');
-        const productList = document.getElementById('productList');
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            
-            if (isAdminLoggedIn) {
-                adminDashboard.style.display = 'block';
-                renderAdminProducts();
+        products.forEach((product, index) => {
+            if(index < 3) { // Show only first 3 on homepage
+                productsGrid.innerHTML += `
+                    <div class="product-card">
+                        <img src="https://source.unsplash.com/random/800x600?${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="product-price">$${product.price}</p>
+                        <button class="buy-btn">Request Private Viewing</button>
+                    </div>
+                `;
             }
-
-            // Setup form event listeners
-            document.getElementById('loginForm').addEventListener('submit', handleLogin);
-            document.getElementById('productForm').addEventListener('submit', handleProductSubmit);
         });
 
-        // Toggle dark/light theme
+        // Theme Toggle
         function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const isDark = !document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
-            const toggleBtn = document.querySelector('.toggle-btn');
-            if (isDark) {
-                toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-            } else {
-                toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-            }
+            document.body.classList.toggle('dark');
+            const btn = document.querySelector('.toggle-btn');
+            btn.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
         }
 
-        // Admin Panel Functions
-        function showAdminPanel() {
-            adminModal.style.display = 'block';
-        }
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-        function closeAdminPanel() {
-            adminModal.style.display = 'none';
-        }
-
-        function logout() {
-            isAdminLoggedIn = false;
-            localStorage.setItem('isAdminLoggedIn', 'false');
-            adminDashboard.style.display = 'none';
-        }
-
-        function handleLogin(e) {
+        // Form Submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if (username === 'admin' && password === 'luxe123') {
-                isAdminLoggedIn = true;
-                localStorage.setItem('isAdminLoggedIn', 'true');
-                adminModal.style.display = 'none';
-                adminDashboard.style.display = 'block';
-                renderAdminProducts();
-            } else {
-                alert('Invalid credentials! Please try again.');
-            }
-        }
+            showSuccessMessage();
+        });
 
-        function handleProductSubmit(e) {
-            e.preventDefault();
-            
-            const product = {
-                id: currentProductId || Date.now().toString(),
-                name: document.getElementById('productName').value,
-                price: document.getElementById('productPrice').value,
-                image: document.getElementById('productImage').value,
-                category: document.getElementById('productCategory').value,
-                description: document.getElementById('productDescription').value,
-                link: document.getElementById('productLink').value
-            };
-            
-            if (currentProductId) {
-                // Update existing product
-                const index = products.findIndex(p => p.id === currentProductId);
-                products[index] = product;
-            } else {
-                // Add new product
-                products.push(product);
-            }
-            
-            saveProducts();
-            renderProducts();
-            renderAdminProducts();
-            resetProductForm();
-        }
-
-        function saveProducts() {
-            localStorage.setItem('products', JSON.stringify(products));
-        }
-
-        function resetProductForm() {
-            currentProductId = null;
-            document.getElementById('productForm').reset();
-            document.getElementById('productId').value = '';
-        }
-
-        function renderProducts() {
-            productsContainer.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="product-description">${product.description}</p>
-                    <p class="product-price">$${parseFloat(product.price).toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
-                    <a href="${product.link}" class="product-link">View Details</a>
-                </div>
-            `).join('');
-        }
-
-        function renderAdminProducts() {
-            productList.innerHTML = products.map(product => `
-                <div class="admin-product-item">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h4>${product.name}</h4>
-                    <p>$${parseFloat(product.price).toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
-                    <p>${product.description}</p>
-                    <div class="product-actions">
-                        <button class="edit-btn" onclick="editProduct('${product.id}')">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="delete-btn" onclick="deleteProduct('${product.id}')">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function editProduct(id) {
-            const product = products.find(p => p.id === id);
-            if (product) {
-                currentProductId = id;
-                document.getElementById('productId').value = id;
-                document.getElementById('productName').value = product.name;
-                document.getElementById('productPrice').value = product.price;
-                document.getElementById('productImage').value = product.image;
-                document.getElementById('productCategory').value = product.category;
-                document.getElementById('productDescription').value = product.description;
-                document.getElementById('productLink').value = product.link;
-                
-                // Scroll to form
-                document.getElementById('productForm').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function deleteProduct(id) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                products = products.filter(p => p.id !== id);
-                saveProducts();
-                renderProducts();
-                renderAdminProducts();
-            }
+        function showSuccessMessage() {
+            const success = document.createElement('div');
+            success.className = 'success-message';
+            success.textContent = 'Message sent successfully!';
+            document.body.appendChild(success);
+            setTimeout(() => success.remove(), 3000);
         }
     </script>
 </body>
