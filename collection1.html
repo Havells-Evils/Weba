@@ -36,40 +36,6 @@
             color: #e0e0e0;
         }
 
-        body.dark .collection-header {
-            background-color: #1a1a1a;
-            border-bottom: 1px solid #333;
-        }
-
-        body.dark .collection-header h1 {
-            color: #e0e0e0;
-        }
-
-        body.dark .collection-filters {
-            background-color: #1a1a1a;
-        }
-
-        body.dark .filter-btn {
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-        }
-
-        body.dark .filter-btn.active {
-            background-color: var(--gold);
-            color: #000;
-        }
-
-        body.dark .product-card {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-        }
-
-        body.dark .product-card h3,
-        body.dark .product-card .product-price,
-        body.dark .product-card .product-description {
-            color: #e0e0e0;
-        }
-
         /* Header Styles */
         .collection-header {
             background-color: var(--white);
@@ -78,21 +44,25 @@
             position: relative;
             top: 0;
             z-index: 100;
+            text-align: center;
         }
 
         .collection-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--charcoal);
-            text-align: center;
             margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--gold), #8b6914);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .collection-header p {
-            text-align: center;
             color: #777;
             max-width: 800px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
 
         .collection-controls {
@@ -101,205 +71,107 @@
             align-items: center;
             padding: 20px 40px;
             background-color: var(--white);
+            border-bottom: 1px solid #eee;
         }
 
-        body.dark .collection-controls {
-            background-color: #1a1a1a;
+        /* Buttons */
+        .back-btn, .toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
         .back-btn {
-            display: flex;
-            align-items: center;
-            background: none;
-            border: none;
-            color: var(--charcoal);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        body.dark .back-btn {
-            color: #e0e0e0;
-        }
-
-        .back-btn i {
-            margin-right: 8px;
-            transition: var(--transition);
+            background: var(--charcoal);
+            color: var(--white);
+            border: 2px solid var(--charcoal);
         }
 
         .back-btn:hover {
-            color: var(--gold);
-        }
-
-        .back-btn:hover i {
-            transform: translateX(-5px);
+            background: var(--white);
+            color: var(--charcoal);
         }
 
         .toggle-btn {
-            background-color: var(--charcoal);
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        body.dark .toggle-btn {
-            background-color: var(--gold);
+            background: var(--gold);
             color: var(--charcoal);
+            border: 2px solid var(--gold);
         }
 
         .toggle-btn:hover {
-            background-color: var(--gold);
-            color: var(--charcoal);
-        }
-
-        body.dark .toggle-btn:hover {
-            background-color: var(--dark-gold);
+            background: var(--white);
         }
 
         /* Category Navigation */
         .category-nav {
             background-color: var(--white);
             padding: 15px 40px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             position: relative;
             z-index: 99;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .category-nav::-webkit-scrollbar-thumb {
+            background-color: var(--gold);
+            border-radius: 3px;
         }
 
         .category-nav ul {
             display: flex;
-            justify-content: center;
             list-style: none;
-            flex-wrap: wrap;
             gap: 15px;
-        }
-
-        .category-nav li {
-            margin: 0;
         }
 
         .category-nav a {
             text-decoration: none;
             color: var(--charcoal);
             font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
             transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
+            border: 2px solid #eee;
         }
 
         .category-nav a:hover, 
         .category-nav a.active {
             background-color: var(--gold);
             color: var(--white);
-        }
-
-        body.dark .category-nav {
-            background-color: #1a1a1a;
-            border-bottom: 1px solid #333;
-        }
-
-        body.dark .category-nav a {
-            color: #e0e0e0;
-        }
-
-        body.dark .category-nav a:hover,
-        body.dark .category-nav a.active {
-            background-color: var(--gold);
-            color: var(--black);
-        }
-
-        /* Filter Section */
-        .collection-filters {
-            background-color: var(--white);
-            padding: 20px 40px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .filter-options {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            background-color: var(--light-gray);
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--gold);
-            color: var(--white);
-        }
-
-        .search-bar {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .search-bar input {
-            flex: 1;
-            padding: 12px 20px;
-            border: 1px solid #ddd;
-            border-radius: 30px 0 0 30px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        body.dark .search-bar input {
-            background-color: #2a2a2a;
-            border-color: #444;
-            color: #e0e0e0;
-        }
-
-        .search-bar button {
-            padding: 12px 20px;
-            background-color: var(--gold);
-            color: var(--white);
-            border: none;
-            border-radius: 0 30px 30px 0;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .search-bar button:hover {
-            background-color: var(--dark-gold);
+            border-color: var(--gold);
         }
 
         /* Products Grid */
         .collections-container {
             padding: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            max-width: 1600px;
-            margin: 0 auto;
         }
 
         .product-card {
             background-color: var(--white);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: var(--transition);
             position: relative;
             display: flex;
@@ -309,68 +181,89 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image container with perfect fitting */
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Fixed height for consistency */
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
         .product-image {
-            height: 220px;
-            width: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Ensures entire image is visible */
+            padding: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
 
         .product-info {
-            padding: 20px;
+            padding: 25px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .product-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
             color: var(--charcoal);
             font-weight: 600;
+            min-height: 3.6rem;
         }
 
         .product-price {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--gold);
             font-weight: 700;
-            margin: 10px 0;
+            margin: 10px 0 15px;
         }
 
         .product-description {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             flex: 1;
             line-height: 1.6;
-        }
-
-        body.dark .product-description {
-            color: #bbb;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .buy-btn {
-            padding: 12px;
+            padding: 14px;
             background-color: var(--charcoal);
             color: var(--white);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 500;
             transition: var(--transition);
             text-align: center;
             text-decoration: none;
             display: block;
+            font-size: 1.1rem;
         }
 
         .buy-btn:hover {
             background-color: var(--gold);
             color: var(--charcoal);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
         .product-category {
@@ -379,172 +272,54 @@
             right: 15px;
             background-color: var(--gold);
             color: var(--charcoal);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
             z-index: 2;
         }
 
-        /* Product Detail Page */
-        .product-detail-page {
-            display: none;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .product-detail-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .product-detail-image {
-            height: 700px;
-            border-radius: 10px;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-detail-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-detail-info h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--charcoal);
-        }
-
-        .product-detail-price {
-            font-size: 2rem;
-            color: var(--gold);
-            margin: 15px 0;
-            font-weight: 700;
-        }
-
-        .product-detail-description {
-            margin: 20px 0;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        body.dark .product-detail-description {
-            color: #bbb;
-        }
-
-        .product-detail-features {
-            margin: 20px 0;
-        }
-
-        .product-detail-features h3 {
-            margin-bottom: 10px;
-            color: var(--charcoal);
-        }
-
-        body.dark .product-detail-features h3 {
-            color: #e0e0e0;
-        }
-
-        .product-detail-features ul {
-            padding-left: 20px;
-            margin: 10px 0;
-        }
-
-        .product-detail-features li {
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        body.dark .product-detail-features li {
-            color: #bbb;
-        }
-
-        .detail-buy-btn {
-            padding: 15px 30px;
-            background-color: var(--charcoal);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            width: 250px;
-        }
-
-        .detail-buy-btn:hover {
-            background-color: var(--gold);
-            color: var(--charcoal);
-            transform: translateY(-3px);
-        }
-
-        .back-to-collection {
-            display: flex;
-            align-items: center;
-            color: var(--charcoal);
-            text-decoration: none;
-            margin-bottom: 30px;
+        .product-highlight {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 500;
-            transition: var(--transition);
-        }
-
-        body.dark .back-to-collection {
-            color: #e0e0e0;
-        }
-
-        .back-to-collection:hover {
-            color: var(--gold);
-        }
-
-        .back-to-collection i {
-            margin-right: 10px;
-            transition: var(--transition);
-        }
-
-        .back-to-collection:hover i {
-            transform: translateX(-5px);
+            z-index: 2;
         }
 
         /* Pagination */
         .pagination {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
-            gap: 10px;
+            margin-top: 50px;
+            gap: 12px;
         }
 
         .page-btn {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: var(--white);
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
             cursor: pointer;
             transition: var(--transition);
-        }
-
-        body.dark .page-btn {
-            background-color: #1a1a1a;
-            border-color: #333;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .page-btn:hover, .page-btn.active {
             background-color: var(--gold);
             color: var(--white);
             border-color: var(--gold);
+            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -636,46 +411,28 @@
             color: #aaa;
             font-size: 0.9rem;
         }
-
-        /* Product Highlight */
-        .product-highlight {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            z-index: 2;
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .product-detail-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
             
-            .product-detail-image {
-                height: 600px;
-            }
-            
-            .category-nav {
-                top: 0px;
+            .product-image-container {
+                height: 270px;
             }
         }
 
         @media (max-width: 768px) {
             .collection-header, 
             .collection-controls, 
-            .collection-filters {
+            .category-nav {
                 padding: 15px 20px;
             }
             
-            .collection-header h1 {
-                font-size: 2rem;
+            .collection-controls {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
             }
             
             .collections-container {
@@ -683,34 +440,12 @@
             }
             
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 25px;
             }
             
-            .filter-options {
-                justify-content: flex-start;
-            }
-            
-            .collection-controls {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
-            
-            .category-nav ul {
-                justify-content: flex-start;
-            }
-            
-            .product-detail-image {
-                height: 800px;
-            }
-            
-            .product-image{
-                height: 400px;
-            }
-            
-            .detail-buy-btn{
-                width: 100%;
+            .product-image-container {
+                height: 240px;
             }
         }
 
@@ -719,47 +454,29 @@
                 grid-template-columns: 1fr;
             }
             
-            .product-image {
-                height: 500px;
+            .collection-header h1 {
+                font-size: 2rem;
             }
             
-            .product-detail-image {
-                height: 400px;
+            .product-card h3 {
+                font-size: 1.25rem;
             }
             
-            .category-nav {
-                top: 0px;
-                padding: 10px 15px;
+            .product-price {
+                font-size: 1.4rem;
             }
             
-            .category-nav ul {
-                gap: 8px;
-            }
-            
-            .category-nav a {
-                padding: 6px 12px;
-                font-size: 0.9rem;
+            .product-image-container {
+                height: 280px;
             }
         }
-        
-        @media (max-width: 1124px) {
-            .product-image{
-                height: 500px;
-            }
-        }
-        
-        @media (max-width: 1024px) {
-            .product-image{
-                height: 480px;
-            }
-        }
-  </style>
-  </head>
+    </style>
+</head>
 <body>
     <!-- Collection Header -->
     <div class="collection-header">
         <h1>LUXE Signature Collection</h1>
-        <p>Discover our exclusive range of luxury items curated for the discerning client</p>
+        <p>Discover our exclusive range of premium products curated for the discerning client</p>
     </div>
 
     <!-- Collection Controls -->
@@ -776,12 +493,13 @@
     <nav class="category-nav">
         <ul>
             <li><a href="#" class="active" data-category="all"><i class="fas fa-star"></i> All Items</a></li>
-            <li><a href="#" data-category="art"><i> Fine Art</i></a></li>
+            <li><a href="#" data-category="Maliao"><i>Maliao</i></a></li>
+            <li><a href="#" data-category="Clean and Clear"><i>Clean and Clear</i></a></li>
+            <li><a href="#" data-category="Comfort"><i>Comfort</i></a></li>
+            <li><a href="#" data-category="Lakme"><i>Lakme</i></a></li>
             <li><a href="#" data-category="jewelry"><I> Jewelry</i></a></li>
             <li><a href="#" data-category="watch"><i> Watches</i></a></li>
             <li><a href="#" data-category="bag"><i> Handbags</i></a></li>
-            <li><a href="#" data-category="Maliao"><i> Maliao</i></a></li>
-            <li><a href="#" data-category="Lakme"><i> Lakme</i></a></li>
             <li><a href="#" data-category="Joy"><i> Joy</i></a></li>
             <li><a href="#" data-category="Cetaphil"><i> Cetaphil</i></a></li>
             <li><a href="#" data-category="Mamaearth"><I> Mamaearth</i></a></li>
@@ -823,7 +541,6 @@
             <li><a href="#" data-category="Hit"><i> Hit</i></a></li>
             <li><a href="#" data-category="Ezee"><i> Ezee</i></a></li>
             <li><a href="#" data-category="Surfexcel"><i> Surfexcel</i></a></li>
-            <li><a href="#" data-category="Comfort"><i> Comfort</i></a></li>
             <li><a href="#" data-category="Rin"><i> Rin</i></a></li>
             <li><a href="#" data-category="Nyle"><i> Nyle</i></a></li>
             <li><a href="#" data-category="Godrej"><I> Godrej</i></a></li>
@@ -831,29 +548,8 @@
             <li><a href="#" data-category="Personi"><i> Personi</i></a></li>
             <li><a href="#" data-category="Swiss Beauty"><i> Swiss Beauty</i></a></li>
             <li><a href="#" data-category="Color Queen"><i> Color Queen</i></a></li>
-            <li><a href="#" data-category="Clean and Clear"><i> Clean and Clear</i></a></li>
-            
-            
-            
         </ul>
     </nav>
-
-    <!-- Filter Section -->
-    <!--  <div class="collection-filters">
-        <div class="filter-options">
-            <button class="filter-btn active" data-filter="all">All Items</button>
-            <button class="filter-btn" data-filter="car">Supercars</button>
-            <button class="filter-btn" data-filter="yacht">Yachts</button>
-            <button class="filter-btn" data-filter="art">Fine Art</button>
-            <button class="filter-btn" data-filter="jewelry">Jewelry</button>
-            <button class="filter-btn" data-filter="watch">Watches</button>
-            <button class="filter-btn" data-filter="bag">Handbags</button>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search luxury items...">
-            <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
-        </div>
-    </div>-->
 
     <!-- Products Grid -->
     <div class="collections-container">
@@ -864,31 +560,9 @@
             <!-- Pagination will be loaded here -->
         </div>
     </div>
-    
-    <!-- Product Detail Page -->
-    <div class="product-detail-page" id="product-detail-page">
-        <a href="#" class="back-to-collection" id="back-to-collection">
-            <i class="fas fa-arrow-left"></i> Back to Collection
-        </a>
-        <div class="product-detail-container">
-            <div class="product-detail-image" id="detail-image"></div>
-            <div class="product-detail-info">
-                <h2 id="detail-name"></h2>
-                <p class="product-detail-price" id="detail-price"></p>
-                <p class="product-detail-description" id="detail-description"></p>
-                
-                <div class="product-detail-features">
-                    <h3>Key Features</h3>
-                    <ul id="detail-features"></ul>
-                </div>
-                
-                <a href="#" class="detail-buy-btn" id="detail-link">Add To Cart Buy at Amazon</a>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
-    <footer class="footer">
+      <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>LUXE</h3>
@@ -916,11 +590,11 @@
         <div class="footer-bottom">
             <p>&copy; 2025 LUXE. All rights reserved</p>
         </div>
-                                                        </footer>
+    </footer>
 
-  <script>
+    <script>
         // Enhanced product data with unique images and links
-        const products = [
+         const products = [
             {
                 id: 1,
                 name: "INFALLIBLE MATTIFYING PRIMER",
@@ -929,113 +603,164 @@
                 category: "Maliao",
                 description: "Maliao Infallible Mattifying Primer | Oil Control & Pore Minimizing | Long-Lasting & Lightweight Formula | Smooth Finish | 35ml",
                 link: "https://amzn.to/43Wonpt",
-                badge: "Beauty",
+                badge: "Premium",
                 features: [
-                    "Brand-Maliao",
-                 "Coverage-Full",
-                "Item Form-Gel",
-"Skin Type-All",
-"Package Information-Tube",
-"Finish Type-Matte",
-"Item Volume-35 Millilitres",
-"Speciality-Mattifying",
-"Number of Items-1",
-"Net Quantity-1",
-"Long-Lasting Formula: Ensures your makeup stays fresh and intact all day.",
-"Pore Minimizing: Effectively reduces the appearance of pores for a smoother complexion.",
-"Oil Control: Balances oil production to prevent shine and maintain a matte finish.",
-"Universal Compatibility: Suitable for all skin types, including sensitive skin.",
-"Lightweight Gel Texture: Provides a comfortable, breathable layer without clogging pores."
-
+                    "Brand: Maliao",
+                    "Oil Control & Pore Minimizing",
+                    "Long-Lasting Formula",
+                    "Lightweight Texture",
+                    "Smooth Finish",
+                    "35ml Size"
                 ]
             },
             {
                 id: 2,
-                name: "MALIAO MAGIC PERFECTING BASE FACE PRIMER",
+                name: "MALIAO MAGIC PERFECTING BASE",
                 price: "287",
-                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71nUJioAaJL._SY879_.jpg",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71nUJioAaJL.jpg?q=100&w=2000",
                 category: "Maliao",
                 description: "Last up to 24 hours | Matte finish, oil less | Fill in fine lines and creates a flawless finish",
                 link: "https://amzn.to/4kiM15n",
-                badge: "Beauty",
+                badge: "Best Seller",
                 features: [
-                    "Brand-Maliao",
-"Coverage-Face Primer, Long Wear",
-"Item Form-Oil",
-"Skin Type-All",
-"Package Information-Tube",
-"Finish Type-Matte",
-"Speciality-Flawless",
-"Number of Items-1",
-"Net Quantity-1", 
-"Item Weight-30 Grams"
+                    "24-Hour Long Wear",
+                    "Matte Finish",
+                    "Oil Control",
+                    "Fills Fine Lines",
+                    "Flawless Finish",
+                    "Universal Shade"
                 ]
             },
             {
                 id: 3,
-                name: "JOY Face Wash Combo Pack",
-                price: "399",
-                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71HG4I5nS9L._SX679_PIbundle-3,TopRight,0,0_AA679SH20_.jpg",
+                name: "Joy Ubtan Tan Removal Face Wash",
+                price: "198",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61ZKREtkyxL._SX679_.jpg",
                 category: "Joy",
-                description: "JOY Face Wash Combo Pack|Skin Fruits Brightening, Ubtan Tan Removal & Blemish Minimizing, And Spots & Tan Clear |For Radiant, Clear, And Healthy Skin (3 X 150Ml)",
-                link: "https://amzn.to/4jAIEFU",
-                badge: "Face Wash",
+                description: "Joy Ubtan Tan Removal Face Wash 150ml | Detans, Removes Dirt & Blemishes for a Natural Glowing Skin",
+                link: "https://www.amazon.in/Blemishes-Turmeric-Brightens-Naturally-Sulphate-Free/dp/B08YRLCX89",
+                badge: "New",
                 features: [
-                    "Brand-JOY",
-                    "Item Weight-450 Grams",
-"Item dimensions L x W x H-11.2 x 20 x 14 Centimeters",
-"Scent-Ubtan Lemon Papaya",
-"Age Range-Adult",
-"Skin Type-All",
-"Item Package Quantity-1",
-"Product Benefits-Acne Prevention, Tan Removal, Dark Spot Removal, Brightening",
-"Special Feature-Not Tested On Animals",
-"Item Form-Gel"
-
-
+                    "Removes Tan & Sun Damage",
+                    "Deep Cleanses Dirt & Oil",
+                    "Enriched with Turmeric & Saffron",
+                    "Natural Glowing Skin",
+                    "Suitable for All Skin Types",
+                    "150ml Size"
                 ]
             },
             {
-    id: 4,
-    name: "Clean & Clear Vitamin C Face Wash 150ml",
-    price: "265",
-    image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/41vMSjB9NjL._SX300_SY300_QL70_FMwebp_.jpg",
-    category: "Clean and Clear",
-    description: "Reduces Pimples. Enriched with Vitamin C known to brighten skin. NO ADDED PARABENS.Has Brightening Ingredients. Reduce pimple causing germs from 1st wash. Gentle enough to use every day for clean and clear skin that glows",
-    link: "https://amzn.to/3ZLjsFo",
-    badge: "face wash",
-    features: [
-        "Brand-Clean & Clear",
-"Item Weight-5.07 Ounces",
-"Item dimensions L x W x H-5.9 x 3.5 x 14.5 Centimeters",
-"Scent-Aloe Vera",
-"Age Range-Youth",
+                id: 4,
+                name: "Clean & Clear Vitamin C Face Wash",
+                price: "265",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/41vMSjB9NjL._SX300_SY300_QL70_FMwebp_.jpg",
+                category: "Clean",
+                description: "Reduces Pimples. Enriched with Vitamin C known to brighten skin. NO ADDED PARABENS.",
+                link: "https://amzn.to/3ZLjsFo",
+                badge: "Popular",
+                features: [
+                    "Vitamin C Enriched",
+                    "Reduces Pimples",
+                    "Brightens Skin",
+                    "No Added Parabens",
+                    "Gentle Daily Use",
+                    "150ml Size"
+                ]
+            },
+            {
+                id: 5,
+                name: "Comfort Morning Fresh Fabric Conditioner",
+                price: "710",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61u9q8ojsjL._SX569_.jpg",
+                category: "Comfort",
+                description: "Comfort Morning Fresh Fabric Conditioner 2 L Refill Pack | After Wash Liquid Fabric Softener",
+                link: "https://amzn.to/3ZN8tv2",
+                badge: "Value Pack",
+                features: [
+                    "Long Lasting Freshness",
+                    "Softens Fabrics",
+                    "Adds Shine to Clothes",
+                    "2L Refill Pack",
+                    "Morning Fresh Scent",
+                    "Eco-Friendly Formula"
+                ]
+            },
+             {
+                id: 6,
+                name: "Lakme Hyaluronic Dewy Overnight Gel",
+                price: "539",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51JgZl8dfcL._SX679_.jpg",
+                category: "Lakme",
+                description: "LAKMÉ Hyaluronic Dewy Overnight Gel with Hyaluronic Acid 50G",
+                link: "https://amzn.to/3Hub86B",
+                badge: "Exclusive",
+                features: [
+"Brand-LAKMÉ",
+"Item Volume-7.5 Millilitres",
+"Item dimensions L x W x H-7.5 x 7 x 7.5 Centimeters",
+"Age Range-Kid",
+"Special Feature-Travel Size",
+"Active Ingredients-hyaluronic acid",
+"Skin Type-Dry",
+"Number of Items-1",
+"Item Form-Gel",
+"Net Quantity-50.0 Grams"
+                ]
+            },
+            {
+                id: 7,
+                name: "Maliao HD Foundation",
+                price: "251",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61mFYkledIL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao HD High Definition Oil-Free Foundation - Flawless Definition, Oil-Free Finish (WHITE IVORY)",
+                link: "https://amzn.to/4mMavp8",
+                badge: "HD Finish",
+                features: [
+                    
+                    
+"Colour-WHITE IVORY",
+"Skin Type-All",
+"Finish Type-Natural",
+"Recommended Uses For Product-Oil control",
+"Material Type Free-Petroleum Free",
+"Package Information-Bottle",
+"Brand-Maliao",
+"Coverage-Full"
+                ]
+            },
+            {
+                id: 8,
+                name: "Joy Aloe Vera Face Wash",
+                price: "240",
+                image: "https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/710xsqIhYeL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg",
+                category: "Joy",
+                description: "Joy Skin Fruits Spots & Tan Clear Face Wash 100ml x2 | Enriched with Papaya & Vitamin C + A | For Healthy Glowing skin | Suitable for All Skin Types",
+                link: "https://amzn.to/3HpKQT1",
+                badge: "Hydrating",
+                features: [
+"Brand-JOY",
+"Item Weight-230 Grams",
+"Item dimensions L x W x H-7 x 4.5 x 17.5 Centimeters",
+"Scent-Fresh",
+"Age Range-Adult",
 "Skin Type-All",
 "Item Package Quantity-1",
-"Special Feature-Scented, Safe Ingredient",
-"Item Form-Gel",
-"Material Type-Free	Alcohol Free, Paraben Free"
-    ]
+"Product Benefits-Sun Protection, Tan Removal, Skin Defense, Oil Control, Deep Cleansing, Refreshing",
+"Special Feature-Natural Ingredients",
+"Active Ingredients-Natural Papaya Extracts"
+
+                ]
             }
         ];
         
-          // DOM Elements
+        // DOM Elements
         const productsGrid = document.getElementById('products-grid');
         const pagination = document.getElementById('pagination');
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const searchInput = document.getElementById('search-input');
         const categoryLinks = document.querySelectorAll('.category-nav a');
-        const productDetailPage = document.getElementById('product-detail-page');
-        const backToCollection = document.getElementById('back-to-collection');
-        const detailImage = document.getElementById('detail-image');
-        const detailName = document.getElementById('detail-name');
-        const detailPrice = document.getElementById('detail-price');
-        const detailDescription = document.getElementById('detail-description');
-        const detailFeatures = document.getElementById('detail-features');
-        const detailLink = document.getElementById('detail-link');
 
         // Pagination variables
-        const itemsPerPage = 12;
+        const itemsPerPage = 8;
         let currentPage = 1;
         let filteredProducts = [...products];
         let currentCategory = 'all';
@@ -1044,9 +769,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
             setupPagination();
-            setupFilterButtons();
             setupCategoryNavigation();
-            setupProductLinks();
         });
 
         // Render products for current page
@@ -1058,39 +781,24 @@
             const currentProducts = filteredProducts.slice(startIndex, endIndex);
             
             if (currentProducts.length === 0) {
-                productsGrid.innerHTML = '<p class="no-results" style="grid-column:1/-1;text-align:center;padding:40px;font-size:1.2rem;">No luxury items found matching your criteria</p>';
+                productsGrid.innerHTML = '<p class="no-results" style="grid-column:1/-1;text-align:center;padding:40px;font-size:1.2rem;">No products found matching your criteria</p>';
                 return;
             }
             
             currentProducts.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
-                productCard.dataset.id = product.id;
-                
-                // Get category display name
-                let categoryName = '';
-                switch(product.category) {
-                    case 'art': categoryName = 'Fine Art'; break;
-                    case 'jewelry': categoryName = 'Jewelry'; break;
-                    case 'watch': categoryName = 'Watch'; break;
-                    case 'bag': categoryName = 'Handbag'; break;
-                    case 'Maliao': categoryName = 'Maliao'; break;
-                    case 'Lakme': categoryName = 'Lakme'; break;
-                    case 'Joy': categoryName = 'Joy'; break;
-                    case 'Clean and Clear': categoryName = 'Clean and Clear'; break; 
-                    
-                }
-                
                 productCard.innerHTML = `
-                    <div class="product-image" style="background-image: url('${product.image}')">
-                        <span class="product-category">${categoryName}</span>
+                    <div class="product-image-container">
+                        <img class="product-image" src="${product.image}" alt="${product.name}">
+                        <span class="product-category">${product.category}</span>
                         ${product.badge ? `<span class="product-highlight">${product.badge}</span>` : ''}
                     </div>
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p class="product-description">${product.description}</p>
                         <p class="product-price">₹${product.price}</p>
-                        <a href="${product.link}" class="buy-btn">Request Private Viewing</a>
+                        <a href="${product.link}" target="_blank" class="buy-btn">Add to Cart</a>
                     </div>
                 `;
                 
@@ -1154,39 +862,6 @@
                 pagination.appendChild(nextBtn);
             }
         }
-
-        // Setup filter buttons
-        function setupFilterButtons() {
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Update active button
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Filter products
-                    currentCategory = btn.dataset.filter;
-                    if (currentCategory === 'all') {
-                        filteredProducts = [...products];
-                    } else {
-                        filteredProducts = products.filter(product => product.category === currentCategory);
-                    }
-                    
-                    // Reset pagination
-                    currentPage = 1;
-                    renderProducts();
-                    setupPagination();
-                    
-                    // Update category nav
-                    categoryLinks.forEach(link => {
-                        if (link.dataset.category === currentCategory) {
-                            link.classList.add('active');
-                        } else {
-                            link.classList.remove('active');
-                        }
-                    });
-                });
-            });
-        }
         
         // Setup category navigation
         function setupCategoryNavigation() {
@@ -1213,113 +888,26 @@
                     currentPage = 1;
                     renderProducts();
                     setupPagination();
-                    
-                    // Update filter buttons
-                    filterBtns.forEach(btn => {
-                        if (btn.dataset.filter === category) {
-                            btn.classList.add('active');
-                        } else {
-                            btn.classList.remove('active');
-                        }
-                    });
                 });
             });
         }
-        
-        // Setup product detail links
-        function setupProductLinks() {
-            productsGrid.addEventListener('click', (e) => {
-                const productCard = e.target.closest('.product-card');
-                if (productCard) {
-                    e.preventDefault();
-                    
-                    const productId = parseInt(productCard.dataset.id);
-                    const product = products.find(p => p.id === productId);
-                    
-                    if (product) {
-                        showProductDetail(product);
-                    }
-                }
-            });
-        }
-        
-        // Show product detail page
-        function showProductDetail(product) {
-            // Set product details
-            detailImage.style.backgroundImage = `url('${product.image}')`;
-            detailName.textContent = product.name;
-            detailPrice.textContent = `₹${product.price}`;
-            detailDescription.textContent = product.description;
-            detailLink.href = product.link;
-            
-            // Set features
-            detailFeatures.innerHTML = '';
-            product.features.forEach(feature => {
-                const li = document.createElement('li');
-                li.textContent = feature;
-                detailFeatures.appendChild(li);
-            });
-            
-            // Show detail page
-            productDetailPage.style.display = 'block';
-            document.querySelector('.collections-container').style.display = 'none';
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // Back to collection
-        backToCollection.addEventListener('click', (e) => {
-            e.preventDefault();
-            productDetailPage.style.display = 'none';
-            document.querySelector('.collections-container').style.display = 'block';
-        });
 
-        // Search products
-        function searchProducts() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            
-            if (searchTerm === '') {
-                // If search is empty, revert to current category filter
-                if (currentCategory === 'all') {
-                    filteredProducts = [...products];
-                } else {
-                    filteredProducts = products.filter(product => product.category === currentCategory);
-                }
-            } else {
-                // Filter by search term in name, category, or description
-                filteredProducts = products.filter(product => 
-                    product.name.toLowerCase().includes(searchTerm) ||
-                    product.description.toLowerCase().includes(searchTerm) ||
-                    product.category.includes(searchTerm)
-                );
-            }
-            
-            // Reset pagination
-            currentPage = 1;
-            renderProducts();
-            setupPagination();
-        }
-
-        // Handle Enter key in search
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                searchProducts();
-            }
-        });
-        
         // Theme Toggle
         function toggleTheme() {
             document.body.classList.toggle('dark');
             const btn = document.querySelector('.toggle-btn');
-            const icon = btn.querySelector('i');
             
             if (document.body.classList.contains('dark')) {
                 btn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                btn.style.backgroundColor = '#333';
+                btn.style.color = '#fff';
             } else {
                 btn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                btn.style.backgroundColor = 'var(--gold)';
+                btn.style.color = 'var(--charcoal)';
             }
         }
     </script>
 </body>
 </html>
+        
