@@ -15,6 +15,7 @@
             --white: #ffffff;
             --black: #000000;
             --transition: all 0.3s ease;
+            --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         * {
@@ -29,40 +30,59 @@
             color: var(--charcoal);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: var(--bg-pattern);
         }
 
         body.dark {
             background-color: #121212;
             color: #e0e0e0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         /* Header Styles */
         .collection-header {
-            background-color: var(--white);
-            padding: 20px 40px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, var(--white) 0%, #f9f9f9 100%);
+            padding: 30px 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
             position: relative;
             top: 0;
             z-index: 100;
             text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .collection-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--charcoal);
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--gold), #8b6914);
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--gold), #8b6914, var(--dark-gold));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .collection-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            border-radius: 3px;
         }
 
         .collection-header p {
             color: #777;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto 0;
             font-size: 1.1rem;
+            font-weight: 300;
         }
 
         .collection-controls {
@@ -71,7 +91,8 @@
             align-items: center;
             padding: 20px 40px;
             background-color: var(--white);
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
         }
 
         /* Buttons */
@@ -84,6 +105,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .back-btn {
@@ -95,6 +117,8 @@
         .back-btn:hover {
             background: var(--white);
             color: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
 
         .toggle-btn {
@@ -105,6 +129,100 @@
 
         .toggle-btn:hover {
             background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            justify-content: center;
+            padding: 20px 40px;
+            background-color: var(--white);
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border-radius: 50px;
+            border: 2px solid #eee;
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .filter-btn {
+            padding: 14px 25px;
+            background-color: var(--white);
+            border: 2px solid #eee;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Alphabet Navigation */
+        .alphabet-nav {
+            background-color: var(--white);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 98;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .alphabet-nav button {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+            background-color: #f5f5f5;
+            color: var(--charcoal);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .alphabet-nav button:hover, .alphabet-nav button.active {
+            background-color: var(--gold);
+            color: var(--white);
+            transform: translateY(-2px);
         }
 
         /* Category Navigation */
@@ -112,11 +230,12 @@
             background-color: var(--white);
             padding: 15px 40px;
             position: relative;
-            z-index: 99;
+            z-index: 97;
             overflow-x: auto;
             white-space: nowrap;
             scrollbar-width: thin;
             scrollbar-color: var(--gold) transparent;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .category-nav::-webkit-scrollbar {
@@ -131,7 +250,7 @@
         .category-nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 10px;
         }
 
         .category-nav a {
@@ -145,6 +264,7 @@
             align-items: center;
             gap: 8px;
             border: 2px solid #eee;
+            white-space: nowrap;
         }
 
         .category-nav a:hover, 
@@ -152,19 +272,20 @@
             background-color: var(--gold);
             color: var(--white);
             border-color: var(--gold);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
         }
 
         /* Products Grid */
         .collections-container {
             padding: 40px;
-            max-width: 1600px;
+            max-width: 1800px;
             margin: 0 auto;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
         }
 
         .product-card {
@@ -181,15 +302,15 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         /* Image container with perfect fitting */
         .product-image-container {
             position: relative;
             width: 100%;
-            height: 300px; /* Fixed height for consistency */
-            background-color: #f9f9f9;
+            height: 320px;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -197,17 +318,16 @@
         }
 
         .product-image {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 85%;
+            max-height: 85%;
             width: auto;
             height: auto;
-            object-fit: contain; /* Ensures entire image is visible */
-            padding: 20px;
+            object-fit: contain;
             transition: transform 0.5s ease;
         }
 
         .product-card:hover .product-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .product-info {
@@ -219,17 +339,26 @@
 
         .product-card h3 {
             font-size: 1.3rem;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--charcoal);
             font-weight: 600;
             min-height: 3.6rem;
+            line-height: 1.4;
         }
 
         .product-price {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             color: var(--gold);
             font-weight: 700;
             margin: 10px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-price::before {
+            content: '₹';
+            font-size: 1.4rem;
         }
 
         .product-description {
@@ -257,13 +386,30 @@
             text-decoration: none;
             display: block;
             font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
         }
 
         .buy-btn:hover {
             background-color: var(--gold);
             color: var(--charcoal);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .buy-btn:hover::before {
+            left: 100%;
         }
 
         .product-category {
@@ -277,6 +423,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .product-highlight {
@@ -290,6 +437,112 @@
             font-size: 0.85rem;
             font-weight: 500;
             z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-features {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .product-features ul {
+            list-style: none;
+            margin-left: 5px;
+        }
+
+        .product-features li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Quick View Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--charcoal);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .modal-body {
+                flex-direction: row;
+            }
+        }
+
+        .modal-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .modal-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .modal-details {
+            flex: 1;
+            padding: 30px;
         }
 
         /* Pagination */
@@ -297,7 +550,7 @@
             display: flex;
             justify-content: center;
             margin-top: 50px;
-            gap: 12px;
+            gap: 8px;
         }
 
         .page-btn {
@@ -307,7 +560,7 @@
             align-items: center;
             justify-content: center;
             background-color: var(--white);
-            border: 2px solid #ddd;
+            border: 2px solid #eee;
             border-radius: 10px;
             cursor: pointer;
             transition: var(--transition);
@@ -320,14 +573,79 @@
             color: var(--white);
             border-color: var(--gold);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--dark-gold);
+            transform: translateY(-5px);
         }
 
         /* Footer */
         .footer {
             background-color: var(--charcoal);
             color: var(--white);
-            padding: 40px 0 20px;
-            margin-top: 60px;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         body.dark .footer {
@@ -339,26 +657,27 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 40px;
             padding: 0 20px;
         }
 
         .footer-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--gold);
         }
 
         .footer-section h4 {
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--gold);
         }
 
         .footer-section p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #ccc;
+            line-height: 1.6;
         }
 
         .footer-section ul {
@@ -366,17 +685,19 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-section ul li a {
             color: #ccc;
             text-decoration: none;
             transition: var(--transition);
+            display: inline-block;
         }
 
         .footer-section ul li a:hover {
             color: var(--gold);
+            transform: translateX(5px);
         }
 
         .social-links {
@@ -388,13 +709,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--white);
             transition: var(--transition);
             text-decoration: none;
+            font-size: 1.2rem;
         }
 
         .social-links a:hover {
@@ -405,26 +727,64 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
+            padding-top: 40px;
+            margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #aaa;
             font-size: 0.9rem;
         }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--charcoal);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Responsive Design */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
+        }
+
+        @media (max-width: 992px) {
+            .collection-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 25px;
+            }
             
             .product-image-container {
-                height: 270px;
+                height: 280px;
             }
         }
 
         @media (max-width: 768px) {
             .collection-header, 
             .collection-controls, 
+            .search-filter,
             .category-nav {
                 padding: 15px 20px;
             }
@@ -435,27 +795,40 @@
                 align-items: center;
             }
             
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
             .collections-container {
                 padding: 20px;
             }
             
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-                gap: 25px;
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
             }
             
             .product-image-container {
-                height: 240px;
+                height: 250px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
             }
         }
 
-        @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
+        @media (max-width: 576px) {
             .collection-header h1 {
                 font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
             }
             
             .product-card h3 {
@@ -463,11 +836,21 @@
             }
             
             .product-price {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             
             .product-image-container {
                 height: 280px;
+            }
+
+            .alphabet-nav {
+                padding: 10px 5px;
+            }
+
+            .alphabet-nav button {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -488,114 +871,24 @@
             <i class="fas fa-moon"></i> Dark Mode
         </button>
     </div>
+
+    <!-- Search and Filter -->
+    <div class="search-filter">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()">
+        </div>
+    </div>
+
+    <!-- Alphabet Navigation -->
+    <div class="alphabet-nav" id="alphabet-nav">
+        <!-- Alphabet buttons will be generated here -->
+    </div>
     
     <!-- Category Navigation -->
     <nav class="category-nav">
-        <ul>
-            <li><a href="#" class="active" data-category="all"><i class="fas fa-star"></i> All Items</a></li>
-            <li><a href="#" data-category="ACWELL"><i>ACWELL</i></a></li>
-            <li><a href="#" data-category="AL-FAKHR"><i>AL-FAKHR</i></a></li>
-            <li><a href="#" data-category="AME-ORGANIC"><i>AME-ORGANIC</i></a></li>
-            <li><a href="#" data-category="AND"><i>AND</i></a></li>
-            <li><a href="#" data-category="ARGATIN"><i>ARGATIN</i></a></li>
-            <li><a href="#" data-category="ASA BEAUTY"><i>ASA BEAUTY</i></a></li>
-            <li><a href="#" data-category="AVIMEE HERBAL"><i>AVIMEE HERBAL</i></a></li>
-            <li><a href="#" data-category="AY"><i>AY</i></a></li>
-            <li><a href="#" data-category="AYA"><i>AYA</i></a></li>
-            <li><a href="#" data-category="Acmed"><i>Acmed</i></a></li>
-            <li><a href="#" data-category="Acne Squad"><i>Acne Squad</i></a></li>
-            <li><a href="#" data-category="Adilqadri"><i>Adilqadri</i></a></li>
-            <li><a href="#" data-category="Aigner"><i>Aigner</i></a></li>
-            <li><a href="#" data-category="Ajmal"><i>Ajmal</i></a></li>
-            <li><a href="#" data-category="Alan Truman"><i>Alan Truman</i></a></li>
-            <li><a href="#" data-category="Alps Goodness"><i>Alps Goodness</i></a></li>
-            <li><a href="#" data-category="Ancel Natural"><i>Ancel Natural</i></a></li>
-            <li><a href="#" data-category="Anveya"><i>Anveya</i></a></li>
-            <li><a href="#" data-category="Aqualogica"><i>Aqualogica</i></a></li>
-            <li><a href="#" data-category="Aramusk"><i>Aramusk</i></a></li>
-            <li><a href="#" data-category="Arata"><i>Arata</i></a></li>
-            <li><a href="#" data-category="Aravi Organic"><i>Aravi Organic</i></a></li>
-            <li><a href="#" data-category="Aroma Care"><i>Aroma Care</i></a></li>
-            <li><a href="#" data-category="Aroma Magic"><i>Aroma Magic</i></a></li>
-            <li><a href="#" data-category="Aroma Treasures"><i>Aroma Treasures</i></a></li>
-            <li><a href="#" data-category="Aroma Musk"><i>Aroma Musk</i></a></li>
-            <li><a href="#" data-category="Aryaneda"><i>Aryaneda</i></a></li>
-            <li><a href="#" data-category="Atulya"><i>Atulya</i></a></li>
-            <li><a href="#" data-category="Avarelle"><i>Avarelle</i></a></li>
-            <li><a href="#" data-category="Aveeno"><i>Aveeno</i></a></li>
-            <li><a href="#" data-category="Axe International"><i>Axe International</i></a></li>
-            <li><a href="#" data-category="Axiom Mukti Gold"><i>Axiom Mukti Gold</i></a></li>
-            <li><a href="#" data-category="Ayur Herbals"><i>Ayur Herbals</i></a></li>
-            <li><a href="#" data-category="Azah"><i>Azah</i></a></li>
-                                                                        
-                                                                            
-                                                                                  
-                                                                                
-            
-
-
-            
-            <li><a href="#" data-category="Maliao"><i>Maliao</i></a></li>
-            <li><a href="#" data-category="Clean and Clear"><i>Clean and Clear</i></a></li>
-            <li><a href="#" data-category="Comfort"><i>Comfort</i></a></li>
-            <li><a href="#" data-category="Lakme"><i>Lakme</i></a></li>
-            <li><a href="#" data-category="Jewellery"><I> Jewellery</i></a></li>
-            <li><a href="#" data-category="Watches"><i> Watches</i></a></li>
-            <li><a href="#" data-category="Handbags"><i> Handbags</i></a></li>
-            <li><a href="#" data-category="Joy"><i> Joy</i></a></li>
-            <li><a href="#" data-category="Cetaphil"><i> Cetaphil</i></a></li>
-            <li><a href="#" data-category="Mamaearth"><I> Mamaearth</i></a></li>
-            <li><a href="#" data-category="Pond's"><i> Pond's</i></a></li>
-            <li><a href="#" data-category="Glow & Lovely"><i> Glow & Lovely</i></a></li>
-            <li><a href="#" data-category="Fiama"><i> Fimam</i></a></li>
-            <li><a href="#" data-category="Nivea"><i> Nivea</i></a></li>
-            <li><a href="#" data-category="Whitetone"><i> Whitetone</i></a></li>
-            <li><a href="#" data-category="Nature's"><i> Nature's</i></a></li>
-            <li><a href="#" data-category="Patanjali"><I> Patanjali</i></a></li>
-            <li><a href="#" data-category="Everyuth"><i> Everyuth</i></a></li>
-            <li><a href="#" data-category="Veet"><i> Veet</i></a></li>
-            <li><a href="#" data-category="Dettol"><i> Dettol</i></a></li>
-            <li><a href="#" data-category="Santoor"><i> Santoor</i></a></li>
-            <li><a href="#" data-category="Lux"><i> Lux</i></a></li>
-            <li><a href="#" data-category="No.1"><i> No.1</i></a></li>
-            <li><a href="#" data-category="Gillette"><I> Gillette</i></a></li>
-            <li><a href="#" data-category="Nonile"><i> Nonile</i></a></li>
-            <li><a href="#" data-category="Head & Sholder"><i> Head & Sholder</i></a></li>
-            <li><a href="#" data-category="Himalaya"><i> Himalaya</i></a></li>
-            <li><a href="#" data-category="kesh kanti"><i> kesh kanti</i></a></li>
-            <li><a href="#" data-category="Loreal"><i> Loreal</i></a></li>
-            <li><a href="#" data-category="Sunsilk"><i> Sunsilk</i></a></li>
-            <li><a href="#" data-category="Clinic Plus"><I> Clinic Plus</i></a></li>
-            <li><a href="#" data-category="Dove"><i> Dove</i></a></li>
-            <li><a href="#" data-category="Dabar Amla"><i> Dabar Amla</i></a></li>
-            <li><a href="#" data-category="Pears"><i> Pears</i></a></li>
-            <li><a href="#" data-category="Garnier"><i> Garnier</i></a></li>
-            <li><a href="#" data-category="Streax"><i> Streax</i></a></li>
-            <li><a href="#" data-category="Livon"><i> Livon</i></a></li>
-            <li><a href="#" data-category="Vaseline"><I> Vaseline</i></a></li>
-            <li><a href="#" data-category="Parachute"><i> Parachute</i></a></li>
-            <li><a href="#" data-category="Lotus"><i> Lotus</i></a></li>
-            <li><a href="#" data-category="Hair Care"><i> Hair Care</i></a></li>
-            <li><a href="#" data-category="Ayur"><i> Ayur</i></a></li>
-            <li><a href="#" data-category="V Wash"><i> V Wash</i></a></li>
-            <li><a href="#" data-category="Johnsons"><i> Gohnsons</i></a></li>
-            <li><a href="#" data-category="Bajaj Almonds Drop"><I> Bajaj almonds Drop</i></a></li>
-            <li><a href="#" data-category="Hit"><i> Hit</i></a></li>
-            <li><a href="#" data-category="Ezee"><i> Ezee</i></a></li>
-            <li><a href="#" data-category="Surfexcel"><i> Surfexcel</i></a></li>
-            <li><a href="#" data-category="Rin"><i> Rin</i></a></li>
-            <li><a href="#" data-category="Nyle"><i> Nyle</i></a></li>
-            <li><a href="#" data-category="Godrej"><I> Godrej</i></a></li>
-            <li><a href="#" data-category="Vim"><i> Vim</i></a></li>
-            <li><a href="#" data-category="Personi"><i> Personi</i></a></li>
-            <li><a href="#" data-category="Swiss Beauty"><i> Swiss Beauty</i></a></li>
-            <li><a href="#" data-category="Color Queen"><i> Color Queen</i></a></li>
-            <li><a href="#" data-category="Tresemme"><i> Tresemme</i></a></li>
-            <li><a href="#" data-category="Pantene"><i> Pantene</i></a></li>
-            <li><a href="#" data-category="Venus"><i> Venus</i></a></li>
-            <li><a href="#" data-category="VLCC"><i> VLCC</i></a></li>
-            <li><a href="#" data-category="Sugar"><i>Sugar</i></a></li>
-            
+        <ul id="category-list">
+            <!-- Categories will be loaded here -->
         </ul>
     </nav>
 
@@ -609,8 +902,23 @@
         </div>
     </div>
 
+    <!-- Quick View Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- Footer -->
-      <footer class="footer">
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>LUXE</h3>
@@ -641,8 +949,8 @@
     </footer>
 
     <script>
-        // Enhanced product data with unique images and links
-         const products = [
+        // Enhanced product data with all products
+        const products = [
             {
                 id: 1,
                 name: "INFALLIBLE MATTIFYING PRIMER",
@@ -659,24 +967,6 @@
                     "Lightweight Texture",
                     "Smooth Finish",
                     "35ml Size"
-                ]
-            },
-             {
-                id: 3,
-                name: "Joy Ubtan Tan Removal Face Wash",
-                price: "198",
-                image: "https://m.media-amazon.com/images/I/81SVajivZHL._SX679_.jpg",
-                category: "Joy",
-                description: "Joy Ubtan Tan Removal Face Wash 150ml | Detans, Removes Dirt & Blemishes for a Natural Glowing Skin",
-                link: "https://www.amazon.in/Blemishes-Turmeric-Brightens-Naturally-Sulphate-Free/dp/B08YRLCX89",
-                badge: "New",
-                features: [
-                    "Removes Tan & Sun Damage",
-                    "Deep Cleanses Dirt & Oil",
-                    "Enriched with Turmeric & Saffron",
-                    "Natural Glowing Skin",
-                    "Suitable for All Skin Types",
-                    "150ml Size"
                 ]
             },
             {
@@ -698,6 +988,24 @@
                 ]
             },
             {
+                id: 3,
+                name: "Joy Ubtan Tan Removal Face Wash",
+                price: "198",
+                image: "https://m.media-amazon.com/images/I/81SVajivZHL._SX679_.jpg",
+                category: "Joy",
+                description: "Joy Ubtan Tan Removal Face Wash 150ml | Detans, Removes Dirt & Blemishes for a Natural Glowing Skin",
+                link: "https://www.amazon.in/Blemishes-Turmeric-Brightens-Naturally-Sulphate-Free/dp/B08YRLCX89",
+                badge: "New",
+                features: [
+                    "Removes Tan & Sun Damage",
+                    "Deep Cleanses Dirt & Oil",
+                    "Enriched with Turmeric & Saffron",
+                    "Natural Glowing Skin",
+                    "Suitable for All Skin Types",
+                    "150ml Size"
+                ]
+            },
+            {
                 id: 4,
                 name: "Clean & Clear Vitamin C Face Wash",
                 price: "265",
@@ -715,7 +1023,7 @@
                     "150ml Size"
                 ]
             },
-             {
+            {
                 id: 5,
                 name: "Lakme Hyaluronic Dewy Overnight Gel",
                 price: "539",
@@ -725,16 +1033,16 @@
                 link: "https://amzn.to/3Hub86B",
                 badge: "Exclusive",
                 features: [
-"Brand-LAKMÉ",
-"Item Volume-7.5 Millilitres",
-"Item dimensions L x W x H-7.5 x 7 x 7.5 Centimeters",
-"Age Range-Kid",
-"Special Feature-Travel Size",
-"Active Ingredients-hyaluronic acid",
-"Skin Type-Dry",
-"Number of Items-1",
-"Item Form-Gel",
-"Net Quantity-50.0 Grams"
+                    "Brand-LAKMÉ",
+                    "Item Volume-7.5 Millilitres",
+                    "Item dimensions L x W x H-7.5 x 7 x 7.5 Centimeters",
+                    "Age Range-Kid",
+                    "Special Feature-Travel Size",
+                    "Active Ingredients-hyaluronic acid",
+                    "Skin Type-Dry",
+                    "Number of Items-1",
+                    "Item Form-Gel",
+                    "Net Quantity-50.0 Grams"
                 ]
             },
             {
@@ -747,16 +1055,14 @@
                 link: "https://amzn.to/4mMavp8",
                 badge: "HD Finish",
                 features: [
-                    
-                    
-"Colour-WHITE IVORY",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Oil control",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Full"
+                    "Colour-WHITE IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Oil control",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full"
                 ]
             },
             {
@@ -769,518 +1075,1003 @@
                 link: "https://amzn.to/3HpKQT1",
                 badge: "Hydrating",
                 features: [
-"Brand-JOY",
-"Item Weight-230 Grams",
-"Item dimensions L x W x H-7 x 4.5 x 17.5 Centimeters",
-"Scent-Fresh",
-"Age Range-Adult",
-"Skin Type-All",
-"Item Package Quantity-1",
-"Product Benefits-Sun Protection, Tan Removal, Skin Defense, Oil Control, Deep Cleansing, Refreshing",
-"Special Feature-Natural Ingredients",
-"Active Ingredients-Natural Papaya Extracts"
-
+                    "Brand-JOY",
+                    "Item Weight-230 Grams",
+                    "Item dimensions L x W x H-7 x 4.5 x 17.5 Centimeters",
+                    "Scent-Fresh",
+                    "Age Range-Adult",
+                    "Skin Type-All",
+                    "Item Package Quantity-1",
+                    "Product Benefits-Sun Protection, Tan Removal, Skin Defense, Oil Control, Deep Cleansing, Refreshing",
+                    "Special Feature-Natural Ingredients",
+                    "Active Ingredients-Natural Papaya Extracts"
                 ]
             },
-             {"id":9,"name":"Maliao Love Me Matte + Poreless Foundation","price":"234","image":"https://m.media-amazon.com/images/I/61aJTB0k9wL._SX679_.jpg","category":"Maliao","description":"Matte finish foundation for flawless skin.","link":"https://amzn.to/45buUxD","badge":"Foundation","features":[
-"Item Form-Cream",
-"Colour	115-IVORY",
-"Skin Type-All",
-"Finish Type-Matte",
-"Recommended Uses For Product-Matte Finish skin",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Medium",
-"Product Benefits-Flawless",
-"Skin Tone-All"
-  ]},
-  {"id":1,"name":"Maliao Foundation + Sunscreen","price":"270","image":"https://m.media-amazon.com/images/I/81RkO5JYUWL._SX679_.jpg","category":"Maliao","description":"Maliao Foundation + Sunscreen - Natural Bright Finish for Radiant Skin (02)","link":"https://amzn.to/3FM2j7I","badge":"Foundation","features":[
-"Item Form-Cream",
-"Colour-02",
-"Skin Type-All",
-"Finish Type-Radiant",
-"Recommended Uses For Product-Natural Bright Finish",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Flawless",
-"Skin Tone-All"
-  ]},
-  {"id":2,"name":"Maliao Age Defying Color Intense Foundation","price":"260","image":"https://m.media-amazon.com/images/I/61PYpJszLGL._SX679_.jpg","category":"Maliao","description":"Maliao Age Defying Color Intense Triple Whitening Oil-Free Foundation Natural Finish SPF 30, 80g (Shade 03)","link":"https://amzn.to/3SFBeGb","badge":"Foundation","features":[
-"Size: 80 g (Pack of 1)",
-"Colour: Shade 03",
-"Item Form-Cream",
-"Colour-Shade 03",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Face Makeup",
-"Material Type Free-Oil Free",
-"Package Information-Tube",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Brightening"
-  ]},
-  {"id":3,"name":"Maliao Color Match Base Foundation","price":"251","image":"https://m.media-amazon.com/images/I/51aa2BvdxSL._SX679_.jpg","category":"Maliao","description":"Maliao Color Match Long Lasting Makeup Base Foundation | High Coverage | Flawless Matte Finish | Oil-Control & Hydrating Formula | Lightweight & Smooth Texture | Ideal for All Skin Types, 50ml","link":"https://amzn.to/4kU9mtW","badge":"Foundation","features":[
-"Item Form-Liquid",
-"Colour	Shade-01",
-"Skin Type-All",
-"Finish Type-Shimmery",
-"Recommended Uses For-Product	Face Makeup",
-"Material Type Free-Alcohol Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Medium",
-"Product Benefits-Moisturizing"
-  ]},
-  {"id":5,"name":"Liquid Mousse Foundation","price":"270","image":"https://m.media-amazon.com/images/I/61AXHFBCoxL._SX679_.jpg","category":"Maliao","description":"Maliao Matte Liquid Mousse Foundation (NATURAL BEIGE)","link":"https://amzn.to/3Hre6J5","badge":"Foundation","features":[
-"Size: 30 g (Pack of 1)",
-"Item Form-Cream",
-"Colour-NATURAL BEIGE",
-"Skin Type-All",
-"Finish Type-Matte",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Flawless",
-"Skin Tone-All"
-  ]},
-             {"id":14,"name":"Photo Finish & Blur Primer","price":"287","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/615rbOD3a4L._SX679_.jpg","category":"Maliao","description":"Maliao Professional The Original Photo Finish Smooth And Blur Pore Minimizing Primer 20 ML - Perfect Base For Flawless Makeup","link":"https://amzn.to/43KcVfq","badge":"Primer","features":[
-"Brand-Maliao",
-"Product Benefits-Blemishes,Brightening,Lightweight,Smoothening,Waterproof",
-"Coverage-Face Primer (pore minimizing, long wear)",
-"Item Form-Gel",
-"Skin Type-All",
-"Finish Type-Natural",
-"Item Volume-20 Millilitres",
-"Speciality-Moisturizing",
-"Number of Items-1",
-"Net Quantity-20.0 Milliliters"
-  ]},
-  {"id":15,"name":"Total Primer","price":"419","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/416wvGA6RsL.jpg","category":"Maliao","description":"Maliao 7-in-1 Total Repair Matte Primer - Pore Minimizing, Long-Lasting Makeup Base","link":"https://amzn.to/4dRxdZ9","badge":"Primer","features":[
-"Brand-Maliao",
-"Coverage-Face Primer, Pore Minimizing, Long Wear, Oil Control",
-"Item Form-Cream",
-"Skin Type-All",
-"Package Information-Tube",
-"Finish Type-Natural",
-"Speciality-Mattifying",
-"Number of Items-1",
-"Net Quantity-40.0 Grams",
-"Manufacturer-MALIAO"
-  ]},
-  {"id":16,"name":"24k Gold Gel Primer","price":"278","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61Yc+5u8A2L._SX679_.jpg","category":"Maliao","description":"Maliao 24K Gold Gel Primer 40ml - Luxe Makeup Base for Radiant Skin","link":"https://amzn.to/3Fst8hn","badge":"Primer","features":[
-"Brand-Maliao",
-"Product Benefits-Brightening",
-"Item Form-Cream",
-"Skin Type-All",
-"Package Information-Tube",
-"Finish Type-Natural",
-"Item Volume-40 Millilitres",
-"Material Type Free-Oil Free",
-"Speciality-organic",
-"Number of Items-1"
-  ]},
-  {"id":17,"name":"24k Gold Gel Primer","price":"429","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/611H1byFfmL._SX679_.jpg","category":"Maliao","description":"Maliao Gel Base Primer, Transparent Gold Crytals, 30 ml","link":"https://amzn.to/43vJNJY","badge":"Gel Primer","features":[
-"Brand-Maliao",
-"Product Benefits-Brightening",
-"Item Form-Gel",
-"Skin Type-All",
-"Package Information-Tube",
-"Finish Type-Shimmery",
-"Item Volume-30 Millilitres",
-"Speciality-Moisturizing",
-"Number of Items-1",
-"Net Quantity-1 Count"
-  ]},
-  {"id":18,"name":"Skin Tone Correcting Brightening Serum","price":"399","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/618Rm6XaxNL._SX679_.jpg","category":"Maliao","description":"Maliao One Step Correct Corrector | Skin Tone Correcting Serum | Brightening Primer for Even Complexion | Redness & Dullness Neutralizer | Lightweight Formula | 40g","link":"https://amzn.to/4mORimH","badge":"Serum","features":[
-"Use by: 01 MAR 2028",
-"Item Form-Gel",
-"Colour-1",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-face makeup",
-"Material Type Free-Petroleum Free",
-"Package Information-Tube",
-"Brand-Maliao",
-"Coverage-Full",
-"Skin Tone-All"
-  ]},
-{"id":19,"name":"Oil Primer","price":"270","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51whRJMeOXL._SX679_.jpg","category":"Maliao","description":"Maliao Primer Oil | Non-Greasy Formula | Smoothes & Softens Skin | Vitamin-Enriched | Hydrating & Lightweight | Ideal for All Skin Types, 35ml","link":"https://amzn.to/4458g96","badge":"Primer","features":[
-"Brand-Maliao",
-"Product Benefits-Smoothening",
-"Coverage-full",
-"Item Form-Oil",
-"Skin Type-All",
-"Finish Type-Natural",
-"Item Volume-35 Millilitres",
-"Speciality-Mattifying",
-"Number of Items-1",
-"Net Quantity-35.0 Milliliters"
-  ]},
-  {"id":20,"name":"Water Base Primer","price":"319","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61AbwwecWGL._SX679_.jpg","category":"Maliao","description":"Maliao Powder-Less Liquid Oil-Free Water Base Primer - Lasting No-Makeup Effect (SOFT IVORY)","link":"https://amzn.to/3FL6KQb","badge":"Primer","features":[
-"Brand-Maliao",
-"Coverage-Face Primer, Long Wear",
-"Item Form-Cream",
-"Skin Type-All",
-"Finish Type-Natural",
-"Speciality-Oil control",
-"Number of Items-1",
-"Net Quantity-50.0 Grams",
-"Manufacturer-MALIAO"
-  ]},
-  {"id":21,"name":"Color Changing Foundation","price":"367","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/518J+ntaCSL._SX569_.jpg","category":"Maliao","description":"Maliao Color Changing Foundation | Flawless Coverage | Skin Tone Adapting | Lightweight & Long-Lasting | Hydrating Formula | 30g","link":"https://amzn.to/3FurLi9","badge":"Foundation","features":[
-"Item Form-Lotion",
-"Colour-1",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-face makeup",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Flawless"
-  ]},
-  {"id":22,"name":"Perfecting Liquid Foundation","price":"299","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51JIsjRkKwL._SX569_.jpg","category":"Maliao","description":"Maliao Perfect Liquid Foundation Full Coverage - Flawless Radiance (NATURAL NUDE)","link":"https://amzn.to/45QTMuK","badge":"Foundation","features":[
-"Size: 60 ml (Pack of 1)",
-"Item Form-Liquid",
-"Colour-NATURAL NUDE",
-"Skin Type-All",
-"Finish Type-Radiant",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Flawless",
-"Skin Tone-All"
-  ]},
-  {"id":23,"name":"Skinveil Foundation","price":"399","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/415UldUbTxL._SX569_.jpg","category":"Maliao","description":"Maliao SkinVeil Foundation | Ultimate Radiant High-Coverage | Longwear & Lightweight | Flawless Matte Finish | Hydrating & Waterproof | Natural, 30ml","link":"https://amzn.to/45ICQGO","badge":"Foundation","features":[
-"Size: 40 ml (Pack of 1)",
-"Item Form-Cream",
-"Colour-NATURAL",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Flawless skin",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Skin Tone-All",
-"Item Weight50 Grams"
-
-  ]},
-  {"id":24,"name":"Cover All Foundation","price":"299","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/411m0GMxIiL._SX569_.jpg","category":"Maliao","description":"Maliao Cover All Foundation - Long-Wearing Oil Control for Flawless Beauty (NATURAL NUDE)","link":"https://amzn.to/4kVkeYH","badge":"Foundation","features":[
-"Size: 30 g (Pack of 1)",
-"Colour: NATURAL NUDE",
-"Item Form-Cream",
-"Colour-NATURAL NUDE",
-"Skin Type-All",
-"Finish Type-Natural",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Oil Control",
-"Skin Tone-All"
-  ]},
-  {"id":25,"name":"Matte HD Skin Foundation","price":"319","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51fz8jf-ppL._SX569_.jpg","category":"Maliao","description":"Maliao Matte HD Skin Foundation (WHITE IVORY)","link":"https://amzn.to/4kYHwwT","badge":"Foundation","features":[
-"Size: 30 ml (Pack of 1)",
-"Item Form-Cream",
-"Colour-WHITE IVORY",
-"Skin Type-All",
-"Finish Type-Natural",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Co,verage-Full",
-"Product Benefits-Flawless",
-"Skin Tone-All"
-  ]},
-  {"id":26,"name":"Waterproof Base Foundation","price":"349","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61OqBS5J4LL._SX569_.jpg","category":"Maliao","description":"Maliao High Coverage Waterproof Base Cream Foundation - Flawless All-Day Wear (NATURAL BEIGE),1 Count","link":"https://amzn.to/43y9XvK","badge":"Foundation","features":[
-"Size: 60 ml (Pack of 1)",
-"Item Form-Cream",
-"Colour-NATURAL BEIGE",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Even Skin Tone",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Flawless",
-"Skin Tone-All"
-  ]},
-  {"id":27,"name":"High Coverage Foundation","price":"287","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/513wEJFc7dL._SX569_.jpg","category":"Maliao","description":"Maliao SkinVeil High Coverage Foundation - Flawless Radiance for Every Skin Tone (01-WHITE IVORY)","link":"https://amzn.to/458yJ6M","badge":"Foundation","features":[
-"Size: 50 ml (Pack of 1)",
-"Item Form-Cream",
-"Colour-01-WHITE IVORY",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Flawless Skin",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Medium",
-"Skin Tone-All"
-  ]},
-  {"id":28,"name":"Foundation Cream","price":"319","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71dq6l3JeLL._SX569_.jpg","category":"Maliao","description":"Maliao Flawless Whitening Foundation Cream with Vitamin E (NATURAL NUDE)","link":"https://amzn.to/4jBH7ze","badge":"Cream","features":[
-"Size: 50 g (Pack of 1)",
-"Colour: NATURAL NUDE",
-"Item Form-Cream",
-"Colour-NATURAL NUDE",
-"Skin Type-All",
-"Finish Type-Natural",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Brightening",
-"Skin Tone-All"
-  ]},
-{"id":29,"name":"Mousse Foundation","price":"251","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/41wPEYXBpUL._SX569_.jpg","category":"Maliao","description":"Maliao Color Match Long Lasting Makeup Base Foundation | High Coverage | Flawless Matte Finish | Oil-Control & Hydrating Formula | Lightweight & Smooth Texture | Ideal for All Skin Types, 50ml","link":"https://amzn.to/3ZjJNKB","badge":"Foundation","features":[
-"Item-Form	Liquid",
-"Colour-Shade 01",
-"Skin Type-All",
-"Finish Type-Shimmery",
-"Recommended Uses For Product-Face Makeup",
-"Material Type Free-Alcohol Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Medium",
-"Product-Benefits"
-  ]},
-  {"id":30,"name":"BB Cream","price":"245","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61d-51om29L._SX569_.jpg","category":"Maliao","description":"Maliao Bb Foundation + Fairness Cream - Full Coverage - Matte Finish - Instant Fair Look (01)","link":"https://amzn.to/3HtDNZy","badge":"Cream","features":[
-"Size: 50 g (Pack of 1)",
-"Item Form-Cream",
-"Colour-WHITE IVORY",
-"Skin Type-All",
-"Finish Type-Matte",
-"Recommended Uses For-Product	Daily wear",
-"Material Type Free-Paraben Free",
-"Package Information-Tube",
-"Brand-Maliao",
-"Coverage-Full",
-"Skin Tone-All" 
-  ]},
-  {"id":31,"name":"Green Tea Whitening Foundation","price":"251","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51WW+cXpcTL._SX569_.jpg","category":"Maliao","description":"Maliao Green Tea Whitening Moist Skin Waterproof Foundation | Full Coverage | Hydrating & Smooth Finish | SPF Protection | Long-Lasting & Oil-Free | Brightening & Even Skin Tone | Natural Beige, 80g","link":"https://amzn.to/43xb1jp","badge":"Foundation","features":[
-"Size: 80 g (Pack of 1)",
-"Item Form-Cream",
-"Colour-NATURAL BEIGE",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Daily Use",
-"Material Type Free-Preservative Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Brightening"
-  ]},
-  {"id":32,"name":"BB Cream","price":"270","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/615xkgRDWSL._SX569_.jpg","category":"Maliao","description":"Maliao BB Instant Fair Look Make-Up Finish Foundation SPF 15 (NATURAL NUDE)","link":"https://amzn.to/43wzsgS","badge":"Cream","features":[
-"Size: 50 g (Pack of 1)",
-"Colour: NATURAL NUDE",
-"Item Form-Mousse",
-"Colour-NATURAL NUDE",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Even Skin Tone",
-"Material Type Free-Petroleum Free",
-"Package Information-Bottle",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefits-Nourishing"
-  ]},
-  {"id":33,"name":"BB Blemish Balm Cream","price":"270","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/519kAKUelwL._SX569_.jpg","category":"Maliao","description":"Maliao BB Blemish Balm Rose Moisture Foundation - Radiant Complexion (SOFT IVORY)","link":"https://amzn.to/3SG2N2g","badge":"Cream","features":[
-"Item Form-Cream",
-"Colour-SOFT IVORY",
-"Skin Type-All",
-"Finish Type-Radiant",
-"Material Type Free-Petroleum Free",
-"Package Information-Tube",
-"Brand-Maliao",
-"Coverage-Full",
-"Product Benefite-Softening"
-  ]},
-  {"id":34,"name":"Dewy Finish Fini Satine","price":"270","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71RED8vRYfL._SX569_.jpg","category":"Maliao","description":"Maliao Professional Makeup Dewy Finish Satin - 16 Hours All-Day Radiance","link":"https://amzn.to/3FPEqvZ","badge":"Hydrating","features":[
-"Brand-Maliao",
-"Coverage-Full",
-"Item Form-Aerosol",
-"Skin Type-Combination",
-"Finish Type-Natural",
-"Material Type Free-Petroleum Free",
-"Package Type Name-Box",
-"Speciality-Hydrating",
-"Number of Items-1",
-"Net Quantity-20.0"    
-  ]},
-  {"id":35,"name":"CC Cream","price":"232","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/41rbVFsfV2L._SX679_.jpg","category":"Maliao","description":"Maliao Camera Ready CC Cream SPF 30 - Dark Spot Correcting | Full Coverage | Brightening & Even Skin Tone | Hydrating & Lightweight Formula | Smooth Finish | Ideal for All Skin Types, White Ivory 40g","link":"https://amzn.to/3HulPq1","badge":"Cream","features":[
-"Item Form-Cream",
-"Colour-WHITE IVORY",
-"Skin Type-All",
-"Finish Type-Natural",
-"Recommended Uses For Product-Brightening & Even Skin Tone",
-"Material Type Free-Alcohol Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Skin Tone-All",
-"Sun Protection-30 SPF"
-  ]},
-  {"id":36,"name":"Primer Matte BB HD Powder","price":"266","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51o719KK0uL._SX679_.jpg","category":"Maliao","description":"Maliao Primer & Matte BB HD Powder with Green Tea Extract - Smooth & Flawless Finish (SOFT IVORY)","link":"https://amzn.to/4kCEIWu","badge":"Powder","features":[
-"Size: 20 g (Pack of 1)",
-"Item Form-Pressed",
-"Colour-SOFT IVORY",
-"Skin Type-All",
-"Finish Type-Matte",
-"Recommended Uses For Product-Flawless Skin",
-"Material Type Free-Petroleum Free",
-"Brand-Maliao",
-"Coverage-Full",
-"Skin Tone-All" 
-  ]},
-{"id":37,"name":"Dove Intense Repair Shampoo 1 Litre + Conditioner 175ml, Combo ","price":"1149","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51PzRvX7CaL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg","category":"Dove","description":"Dove Intense Repair Shampoo 1 Litre + Conditioner 175ml, Combo | For Dry and Damaged Hair | Enriched with Fibre Actives | Strengthens Smooth & Strong Hair","link":"https://amzn.to/3HK3F3o","badge":"Shampoo","features":[
-"Product Benefits-Nourishing",
-"Material Type Free-Paraben Free",
-"Item Form-Liquid",
-"Brand-Dove",
-"Hair Type-all hair types"
-  ]},
-  {"id":38,"name":"TRESemme Hair Fall Defence Shampoo 1L & Conditioner 190ml","price":"1159","image":"https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51c4rDEKZaL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg","category":"Tresemme","description":"TRESemme Hair Fall Defence Shampoo 1 L & Conditioner 190 ml, With Keratin for Hair Fall Control and Longer, Stronger Hair - Anti Hairfall for Damaged Hair, For Men & Women","link":"https://amzn.to/3SCo7Wm","badge":"Shampoo","features":[
-"Use by: 30 NOV 2026",
-"Product Benefits-Gentle",
-"Material Type Free-Scent",
-"Item Form-Liquid",
-"Brand-TRESemme",
-"Hair Type-All"
-  ]},
-{"id":39,"name":"Vitamin C SunScreen Cream","price":"265","image":"https://m.media-amazon.com/images/I/51+yrpZ0cIL._SL1200_.jpg","category":"Maliao","description":"Maliao Vitamin C Sunscreen Cream SPF 60+ PA+++ | With Berry Glutathione & Hyaluronic Acid | Waterproof & Sweatproof | Brightening & Anti-Aging Sunblock | For All Skin Types | 100g","link":"https://amzn.to/3HLF0vu","badge":"SunScreen Cream","features":[
-"Scent-Orange",
-"Product Benefits-Collagen, Vitamin C, Oil Extracted from Natural plants, Brighten the Skin",
-"Sun Protection Factor-30 Sun Protection Factor(SPF)",
-"Item Weight-60 Grams",
-"Number of Items-1",
-"Net Quantity-60.0 Grams",
-"Skin Type-All",
-"Item dimensions L x W x H-12 x 6 x 12 Centimeters",
-"Brand-Maliao",
-"Skin Tone-All"
-  ]},
-  {"id":40,"name":"Vitamin C Whitening Cream","price":"340","image":"https://m.media-amazon.com/images/I/510MO9cReKL._SL1200_.jpg","category":"Maliao","description":"Maliao Whitening Cream with Vitamin C, Berry Glutathione & Hyaluronic Acid (Improve Skin, Deep Nourishment, Repair Skin, All Skin Types)","link":"https://amzn.to/4l3xUAQ","badge":"Cream","features":[
-"Brand-Maliao",
-"Age Range-Adult",
-"Special Feature-Antioxidant",
-"Active Ingredients-Collagen, Vitamin C , Oil Extracted from Natural plants, Brighten the Skin",
-"Skin Type-All",
-"Number of Items-1",
-"Scent-Orange",
-"Item Form-Cream",
-"Net Quantity-40.0 Grams",
-"Special Ingredients-Carrot seed oil"
-    ]},
-  {"id":41,"name":"Garnier Bright Complete Serum Cleanser 100gm","price":"203","image":"https://m.media-amazon.com/images/I/619MxRl7SBL._SX679_.jpg","category":"Garnier","description":"Garnier Bright Complete Serum Cleanser 100gm | Deep Cleansing Face Wash with Vitamin C for Brighter, Radiant Skin | Visibly Brighter Skin in One Wash for All Skin Types","link":"https://amzn.to/40aPHOq","badge":"Serum Cleanser","features":[
-"Brand-Garnier",
-"Item Weight-100 Grams",
-"Item dimensions L x W x H-6 x 3.1 x 15.7 Centimeters",
-"Scent-Unscented",
-"Age Range-Adult",
-"Skin Type-All",
-"Product Benefits-Brightening",
-"Item Form-Liquid",
-"Number of Items-1",
-"Net Quantity-100.0 Grams"
-      ]},
-{"id":42,"name":"White Tone Face Matte Powder","price":"198","image":"https://m.media-amazon.com/images/I/61iXTkMI3XL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg","category":"Whitetone","description":"FOGG White Tone Face Matte Powder For All Skin Types For, Get Oil-Free, Even-Toned Skin Instantly, 75G (Pack Of 2), Pink","link":"https://amzn.to/3FQuKBD","badge":"Powder","features":[
-"Brand-FOGG",
-"Item Form-Loose",
-"Colour-Pink",
-"Finish Type-Matte",
-"Skin Type-All",
-"Coverage-Light"<
-"Product Benefits-Softening,Smoothening",
-"Model Name-Face Powder for Women, Get Oil-Free, Even-Toned Skin Instantly, 75g (Pack of 2)",
-"Number of Items-2",
-"Special Feature-Brightening"
-  ]},
-{
-            "id": 43,
-            "name": "ZENEME Jewellery Set Gold Plated American Diamond",
-            "price": "272",
-            "image": "https://m.media-amazon.com/images/I/71R9eWfBtNL._SY695_.jpg",
-            "category": "Jewellery",
-            "description": "ZENEME Jewellery Set Gold Plated American Diamond Traditional Stylish Pendant Set, Ring, Bracelet with Earring Jewellery for Women & Girls",
-            "link": "https://amzn.to/43OihaS",
-            "badge": "Jewellery Set",
-            "features": [
-"Clasp type-Lobster Clasp",
-"Material type-Brass",
-"Metal type-Brass",
-"Chain type-Rope",
-"Gem type-Cubic Zirconia",
-"Occasion type-Festive, Promise, Engagement, Wedding, Anniversary",
-"Country of Origin-India"
-            ]
-        },
-        {
-            "id": 44,
-            "name": "Acnos Premium Analogue Women's Rose-Gold Magnet Watch ",
-            "price": "280",
-            "image": "https://m.media-amazon.com/images/I/71nbOk-3qUL._SX679_.jpg",
-            "category": "Watches",
-            "description": "Acnos Premium Analogue Women's Rose-Gold Magnet Watch With Rosegold Bracelet With Gift Box - Metal",
-            "link": "https://amzn.to/3TsOX3u",
-            "badge": "Watch And Bracelet",
-            "features": [
-"Case diameter-5 Millimetres",
-"Band colour-Rose Gold",
-"Band material type-Platinum",
-"Warranty type-Manufacturer",
-"Watch movement type-Quartz",
-"Item weight-250 Grams",
-"Country of Origin-India"  
-            ]
-        }
-        
+            {
+                id: 9,
+                name: "Maliao Love Me Matte + Poreless Foundation",
+                price: "234",
+                image: "https://m.media-amazon.com/images/I/61aJTB0k9wL._SX679_.jpg",
+                category: "Maliao",
+                description: "Matte finish foundation for flawless skin.",
+                link: "https://amzn.to/45buUxD",
+                badge: "Foundation",
+                features: [
+                    "Item Form-Cream",
+                    "Colour 115-IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Matte",
+                    "Recommended Uses For Product-Matte Finish skin",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Medium",
+                    "Product Benefits-Flawless",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 10,
+                name: "Maliao Foundation + Sunscreen",
+                price: "270",
+                image: "https://m.media-amazon.com/images/I/81RkO5JYUWL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Foundation + Sunscreen - Natural Bright Finish for Radiant Skin (02)",
+                link: "https://amzn.to/3FM2j7I",
+                badge: "Foundation",
+                features: [
+                    "Item Form-Cream",
+                    "Colour-02",
+                    "Skin Type-All",
+                    "Finish Type-Radiant",
+                    "Recommended Uses For Product-Natural Bright Finish",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Flawless",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 11,
+                name: "Maliao Age Defying Color Intense Foundation",
+                price: "260",
+                image: "https://m.media-amazon.com/images/I/61PYpJszLGL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Age Defying Color Intense Triple Whitening Oil-Free Foundation Natural Finish SPF 30, 80g (Shade 03)",
+                link: "https://amzn.to/3SFBeGb",
+                badge: "Foundation",
+                features: [
+                    "Size: 80 g (Pack of 1)",
+                    "Colour: Shade 03",
+                    "Item Form-Cream",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Face Makeup",
+                    "Material Type Free-Oil Free",
+                    "Package Information-Tube",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Brightening"
+                ]
+            },
+            {
+                id: 12,
+                name: "Maliao Color Match Base Foundation",
+                price: "251",
+                image: "https://m.media-amazon.com/images/I/51aa2BvdxSL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Color Match Long Lasting Makeup Base Foundation | High Coverage | Flawless Matte Finish | Oil-Control & Hydrating Formula | Lightweight & Smooth Texture | Ideal for All Skin Types, 50ml",
+                link: "https://amzn.to/4kU9mtW",
+                badge: "Foundation",
+                features: [
+                    "Item Form-Liquid",
+                    "Colour Shade-01",
+                    "Skin Type-All",
+                    "Finish Type-Shimmery",
+                    "Recommended Uses For Product Face Makeup",
+                    "Material Type Free-Alcohol Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Medium",
+                    "Product Benefits-Moisturizing"
+                ]
+            },
+            {
+                id: 13,
+                name: "Liquid Mousse Foundation",
+                price: "270",
+                image: "https://m.media-amazon.com/images/I/61AXHFBCoxL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Matte Liquid Mousse Foundation (NATURAL BEIGE)",
+                link: "https://amzn.to/3Hre6J5",
+                badge: "Foundation",
+                features: [
+                    "Size: 30 g (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-NATURAL BEIGE",
+                    "Skin Type-All",
+                    "Finish Type-Matte",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Flawless",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 14,
+                name: "Photo Finish & Blur Primer",
+                price: "287",
+                image: "https://m.media-amazon.com/images/I/615rbOD3a4L._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Professional The Original Photo Finish Smooth And Blur Pore Minimizing Primer 20 ML - Perfect Base For Flawless Makeup",
+                link: "https://amzn.to/43KcVfq",
+                badge: "Primer",
+                features: [
+                    "Brand-Maliao",
+                    "Product Benefits-Blemishes,Brightening,Lightweight,Smoothening,Waterproof",
+                    "Coverage-Face Primer (pore minimizing, long wear)",
+                    "Item Form-Gel",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Item Volume-20 Millilitres",
+                    "Speciality-Moisturizing",
+                    "Number of Items-1",
+                    "Net Quantity-20.0 Milliliters"
+                ]
+            },
+            {
+                id: 15,
+                name: "Total Primer",
+                price: "419",
+                image: "https://m.media-amazon.com/images/I/416wvGA6RsL.jpg",
+                category: "Maliao",
+                description: "Maliao 7-in-1 Total Repair Matte Primer - Pore Minimizing, Long-Lasting Makeup Base",
+                link: "https://amzn.to/4dRxdZ9",
+                badge: "Primer",
+                features: [
+                    "Brand-Maliao",
+                    "Coverage-Face Primer, Pore Minimizing, Long Wear, Oil Control",
+                    "Item Form-Cream",
+                    "Skin Type-All",
+                    "Package Information-Tube",
+                    "Finish Type-Natural",
+                    "Speciality-Mattifying",
+                    "Number of Items-1",
+                    "Net Quantity-40.0 Grams",
+                    "Manufacturer-MALIAO"
+                ]
+            },
+            {
+                id: 16,
+                name: "24k Gold Gel Primer",
+                price: "278",
+                image: "https://m.media-amazon.com/images/I/61Yc+5u8A2L._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao 24K Gold Gel Primer 40ml - Luxe Makeup Base for Radiant Skin",
+                link: "https://amzn.to/3Fst8hn",
+                badge: "Primer",
+                features: [
+                    "Brand-Maliao",
+                    "Product Benefits-Brightening",
+                    "Item Form-Cream",
+                    "Skin Type-All",
+                    "Package Information-Tube",
+                    "Finish Type-Natural",
+                    "Item Volume-40 Millilitres",
+                    "Material Type Free-Oil Free",
+                    "Speciality-organic",
+                    "Number of Items-1"
+                ]
+            },
+            {
+                id: 17,
+                name: "24k Gold Gel Primer",
+                price: "429",
+                image: "https://m.media-amazon.com/images/I/611H1byFfmL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Gel Base Primer, Transparent Gold Crytals, 30 ml",
+                link: "https://amzn.to/43vJNJY",
+                badge: "Gel Primer",
+                features: [
+                    "Brand-Maliao",
+                    "Product Benefits-Brightening",
+                    "Item Form-Gel",
+                    "Skin Type-All",
+                    "Package Information-Tube",
+                    "Finish Type-Shimmery",
+                    "Item Volume-30 Millilitres",
+                    "Speciality-Moisturizing",
+                    "Number of Items-1",
+                    "Net Quantity-1 Count"
+                ]
+            },
+            {
+                id: 18,
+                name: "Skin Tone Correcting Brightening Serum",
+                price: "399",
+                image: "https://m.media-amazon.com/images/I/618Rm6XaxNL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao One Step Correct Corrector | Skin Tone Correcting Serum | Brightening Primer for Even Complexion | Redness & Dullness Neutralizer | Lightweight Formula | 40g",
+                link: "https://amzn.to/4mORimH",
+                badge: "Serum",
+                features: [
+                    "Use by: 01 MAR 2028",
+                    "Item Form-Gel",
+                    "Colour-1",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-face makeup",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Tube",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 19,
+                name: "Oil Primer",
+                price: "270",
+                image: "https://m.media-amazon.com/images/I/51whRJMeOXL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Primer Oil | Non-Greasy Formula | Smoothes & Softens Skin | Vitamin-Enriched | Hydrating & Lightweight | Ideal for All Skin Types, 35ml",
+                link: "https://amzn.to/4458g96",
+                badge: "Primer",
+                features: [
+                    "Brand-Maliao",
+                    "Product Benefits-Smoothening",
+                    "Coverage-full",
+                    "Item Form-Oil",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Item Volume-35 Millilitres",
+                    "Speciality-Mattifying",
+                    "Number of Items-1",
+                    "Net Quantity-35.0 Milliliters"
+                ]
+            },
+            {
+                id: 20,
+                name: "Water Base Primer",
+                price: "319",
+                image: "https://m.media-amazon.com/images/I/61AbwwecWGL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Powder-Less Liquid Oil-Free Water Base Primer - Lasting No-Makeup Effect (SOFT IVORY)",
+                link: "https://amzn.to/3FL6KQb",
+                badge: "Primer",
+                features: [
+                    "Brand-Maliao",
+                    "Coverage-Face Primer, Long Wear",
+                    "Item Form-Cream",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Speciality-Oil control",
+                    "Number of Items-1",
+                    "Net Quantity-50.0 Grams",
+                    "Manufacturer-MALIAO"
+                ]
+            },
+            {
+                id: 21,
+                name: "Color Changing Foundation",
+                price: "367",
+                image: "https://m.media-amazon.com/images/I/518J+ntaCSL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Color Changing Foundation | Flawless Coverage | Skin Tone Adapting | Lightweight & Long-Lasting | Hydrating Formula | 30g",
+                link: "https://amzn.to/3FurLi9",
+                badge: "Foundation",
+                features: [
+                    "Item Form-Lotion",
+                    "Colour-1",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-face makeup",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Flawless"
+                ]
+            },
+            {
+                id: 22,
+                name: "Perfecting Liquid Foundation",
+                price: "299",
+                image: "https://m.media-amazon.com/images/I/51JIsjRkKwL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Perfect Liquid Foundation Full Coverage - Flawless Radiance (NATURAL NUDE)",
+                link: "https://amzn.to/45QTMuK",
+                badge: "Foundation",
+                features: [
+                    "Size: 60 ml (Pack of 1)",
+                    "Item Form-Liquid",
+                    "Colour-NATURAL NUDE",
+                    "Skin Type-All",
+                    "Finish Type-Radiant",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Flawless",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 23,
+                name: "Skinveil Foundation",
+                price: "399",
+                image: "https://m.media-amazon.com/images/I/415UldUbTxL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao SkinVeil Foundation | Ultimate Radiant High-Coverage | Longwear & Lightweight | Flawless Matte Finish | Hydrating & Waterproof | Natural, 30ml",
+                link: "https://amzn.to/45ICQGO",
+                badge: "Foundation",
+                features: [
+                    "Size: 40 ml (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-NATURAL",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Flawless skin",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Skin Tone-All",
+                    "Item Weight50 Grams"
+                ]
+            },
+            {
+                id: 24,
+                name: "Cover All Foundation",
+                price: "299",
+                image: "https://m.media-amazon.com/images/I/411m0GMxIiL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Cover All Foundation - Long-Wearing Oil Control for Flawless Beauty (NATURAL NUDE)",
+                link: "https://amzn.to/4kVkeYH",
+                badge: "Foundation",
+                features: [
+                    "Size: 30 g (Pack of 1)",
+                    "Colour: NATURAL NUDE",
+                    "Item Form-Cream",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Oil Control",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 25,
+                name: "Matte HD Skin Foundation",
+                price: "319",
+                image: "https://m.media-amazon.com/images/I/51fz8jf-ppL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Matte HD Skin Foundation (WHITE IVORY)",
+                link: "https://amzn.to/4kYHwwT",
+                badge: "Foundation",
+                features: [
+                    "Size: 30 ml (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-WHITE IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Flawless",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 26,
+                name: "Waterproof Base Foundation",
+                price: "349",
+                image: "https://m.media-amazon.com/images/I/61OqBS5J4LL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao High Coverage Waterproof Base Cream Foundation - Flawless All-Day Wear (NATURAL BEIGE),1 Count",
+                link: "https://amzn.to/43y9XvK",
+                badge: "Foundation",
+                features: [
+                    "Size: 60 ml (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-NATURAL BEIGE",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Even Skin Tone",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Flawless",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 27,
+                name: "High Coverage Foundation",
+                price: "287",
+                image: "https://m.media-amazon.com/images/I/513wEJFc7dL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao SkinVeil High Coverage Foundation - Flawless Radiance for Every Skin Tone (01-WHITE IVORY)",
+                link: "https://amzn.to/458yJ6M",
+                badge: "Foundation",
+                features: [
+                    "Size: 50 ml (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-01-WHITE IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Flawless Skin",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Medium",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 28,
+                name: "Foundation Cream",
+                price: "319",
+                image: "https://m.media-amazon.com/images/I/71dq6l3JeLL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Flawless Whitening Foundation Cream with Vitamin E (NATURAL NUDE)",
+                link: "https://amzn.to/4jBH7ze",
+                badge: "Cream",
+                features: [
+                    "Size: 50 g (Pack of 1)",
+                    "Colour: NATURAL NUDE",
+                    "Item Form-Cream",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Brightening",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 29,
+                name: "Mousse Foundation",
+                price: "251",
+                image: "https://m.media-amazon.com/images/I/41wPEYXBpUL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Color Match Long Lasting Makeup Base Foundation | High Coverage | Flawless Matte Finish | Oil-Control & Hydrating Formula | Lightweight & Smooth Texture | Ideal for All Skin Types, 50ml",
+                link: "https://amzn.to/3ZjJNKB",
+                badge: "Foundation",
+                features: [
+                    "Item-Form Liquid",
+                    "Colour-Shade 01",
+                    "Skin Type-All",
+                    "Finish Type-Shimmery",
+                    "Recommended Uses For Product-Face Makeup",
+                    "Material Type Free-Alcohol Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Medium",
+                    "Product-Benefits"
+                ]
+            },
+            {
+                id: 30,
+                name: "BB Cream",
+                price: "245",
+                image: "https://m.media-amazon.com/images/I/61d-51om29L._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Bb Foundation + Fairness Cream - Full Coverage - Matte Finish - Instant Fair Look (01)",
+                link: "https://amzn.to/3HtDNZy",
+                badge: "Cream",
+                features: [
+                    "Size: 50 g (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-WHITE IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Matte",
+                    "Recommended Uses For Product Daily wear",
+                    "Material Type Free-Paraben Free",
+                    "Package Information-Tube",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Skin Tone-All" 
+                ]
+            },
+            {
+                id: 31,
+                name: "Green Tea Whitening Foundation",
+                price: "251",
+                image: "https://m.media-amazon.com/images/I/51WW+cXpcTL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Green Tea Whitening Moist Skin Waterproof Foundation | Full Coverage | Hydrating & Smooth Finish | SPF Protection | Long-Lasting & Oil-Free | Brightening & Even Skin Tone | Natural Beige, 80g",
+                link: "https://amzn.to/43xb1jp",
+                badge: "Foundation",
+                features: [
+                    "Size: 80 g (Pack of 1)",
+                    "Item Form-Cream",
+                    "Colour-NATURAL BEIGE",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Daily Use",
+                    "Material Type Free-Preservative Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Brightening"
+                ]
+            },
+            {
+                id: 32,
+                name: "BB Cream",
+                price: "270",
+                image: "https://m.media-amazon.com/images/I/615xkgRDWSL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao BB Instant Fair Look Make-Up Finish Foundation SPF 15 (NATURAL NUDE)",
+                link: "https://amzn.to/43wzsgS",
+                badge: "Cream",
+                features: [
+                    "Size: 50 g (Pack of 1)",
+                    "Colour: NATURAL NUDE",
+                    "Item Form-Mousse",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Even Skin Tone",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Bottle",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefits-Nourishing"
+                ]
+            },
+            {
+                id: 33,
+                name: "BB Blemish Balm Cream",
+                price: "270",
+                image: "https://m.media-amazon.com/images/I/519kAKUelwL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao BB Blemish Balm Rose Moisture Foundation - Radiant Complexion (SOFT IVORY)",
+                link: "https://amzn.to/3SG2N2g",
+                badge: "Cream",
+                features: [
+                    "Item Form-Cream",
+                    "Colour-SOFT IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Radiant",
+                    "Material Type Free-Petroleum Free",
+                    "Package Information-Tube",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Product Benefite-Softening"
+                ]
+            },
+            {
+                id: 34,
+                name: "Dewy Finish Fini Satine",
+                price: "270",
+                image: "https://m.media-amazon.com/images/I/71RED8vRYfL._SX569_.jpg",
+                category: "Maliao",
+                description: "Maliao Professional Makeup Dewy Finish Satin - 16 Hours All-Day Radiance",
+                link: "https://amzn.to/3FPEqvZ",
+                badge: "Hydrating",
+                features: [
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Item Form-Aerosol",
+                    "Skin Type-Combination",
+                    "Finish Type-Natural",
+                    "Material Type Free-Petroleum Free",
+                    "Package Type Name-Box",
+                    "Speciality-Hydrating",
+                    "Number of Items-1",
+                    "Net Quantity-20.0"    
+                ]
+            },
+            {
+                id: 35,
+                name: "CC Cream",
+                price: "232",
+                image: "https://m.media-amazon.com/images/I/41rbVFsfV2L._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Camera Ready CC Cream SPF 30 - Dark Spot Correcting | Full Coverage | Brightening & Even Skin Tone | Hydrating & Lightweight Formula | Smooth Finish | Ideal for All Skin Types, White Ivory 40g",
+                link: "https://amzn.to/3HulPq1",
+                badge: "Cream",
+                features: [
+                    "Item Form-Cream",
+                    "Colour-WHITE Ivory",
+                    "Skin Type-All",
+                    "Finish Type-Natural",
+                    "Recommended Uses For Product-Brightening & Even Skin Tone",
+                    "Material Type Free-Alcohol Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Skin Tone-All",
+                    "Sun Protection-30 SPF"
+                ]
+            },
+            {
+                id: 36,
+                name: "Primer Matte BB HD Powder",
+                price: "266",
+                image: "https://m.media-amazon.com/images/I/51o719KK0uL._SX679_.jpg",
+                category: "Maliao",
+                description: "Maliao Primer & Matte BB HD Powder with Green Tea Extract - Smooth & Flawless Finish (SOFT IVORY)",
+                link: "https://amzn.to/4kCEIWu",
+                badge: "Powder",
+                features: [
+                    "Size: 20 g (Pack of 1)",
+                    "Item Form-Pressed",
+                    "Colour-SOFT IVORY",
+                    "Skin Type-All",
+                    "Finish Type-Matte",
+                    "Recommended Uses For Product-Flawless Skin",
+                    "Material Type Free-Petroleum Free",
+                    "Brand-Maliao",
+                    "Coverage-Full",
+                    "Skin Tone-All" 
+                ]
+            },
+            {
+                id: 37,
+                name: "Dove Intense Repair Shampoo 1 Litre + Conditioner 175ml, Combo ",
+                price: "1149",
+                image: "https://m.media-amazon.com/images/I/51PzRvX7CaL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg",
+                category: "Dove",
+                description: "Dove Intense Repair Shampoo 1 Litre + Conditioner 175ml, Combo | For Dry and Damaged Hair | Enriched with Fibre Actives | Strengthens Smooth & Strong Hair",
+                link: "https://amzn.to/3HK3F3o",
+                badge: "Shampoo",
+                features: [
+                    "Product Benefits-Nourishing",
+                    "Material Type Free-Paraben Free",
+                    "Item Form-Liquid",
+                    "Brand-Dove",
+                    "Hair Type-all hair types"
+                ]
+            },
+            {
+                id: 38,
+                name: "TRESemme Hair Fall Defence Shampoo 1L & Conditioner 190ml",
+                price: "1159",
+                image: "https://m.media-amazon.com/images/I/51c4rDEKZaL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg",
+                category: "Tresemme",
+                description: "TRESemme Hair Fall Defence Shampoo 1 L & Conditioner 190 ml, With Keratin for Hair Fall Control and Longer, Stronger Hair - Anti Hairfall for Damaged Hair, For Men & Women",
+                link: "https://amzn.to/3SCo7Wm",
+                badge: "Shampoo",
+                features: [
+                    "Use by: 30 NOV 2026",
+                    "Product Benefits-Gentle",
+                    "Material Type Free-Scent",
+                    "Item Form-Liquid",
+                    "Brand-TRESemme",
+                    "Hair Type-All"
+                ]
+            },
+            {
+                id: 39,
+                name: "Vitamin C SunScreen Cream",
+                price: "265",
+                image: "https://m.media-amazon.com/images/I/51+yrpZ0cIL._SL1200_.jpg",
+                category: "Maliao",
+                description: "Maliao Vitamin C Sunscreen Cream SPF 60+ PA+++ | With Berry Glutathione & Hyaluronic Acid | Waterproof & Sweatproof | Brightening & Anti-Aging Sunblock | For All Skin Types | 100g",
+                link: "https://amzn.to/3HLF0vu",
+                badge: "SunScreen Cream",
+                features: [
+                    "Scent-Orange",
+                    "Product Benefits-Collagen, Vitamin C, Oil Extracted from Natural plants, Brighten the Skin",
+                    "Sun Protection Factor-30 Sun Protection Factor(SPF)",
+                    "Item Weight-60 Grams",
+                    "Number of Items-1",
+                    "Net Quantity-60.0 Grams",
+                    "Skin Type-All",
+                    "Item dimensions L x W x H-12 x 6 x 12 Centimeters",
+                    "Brand-Maliao",
+                    "Skin Tone-All"
+                ]
+            },
+            {
+                id: 40,
+                name: "Vitamin C Whitening Cream",
+                price: "340",
+                image: "https://m.media-amazon.com/images/I/510MO9cReKL._SL1200_.jpg",
+                category: "Maliao",
+                description: "Maliao Whitening Cream with Vitamin C, Berry Glutathione & Hyaluronic Acid (Improve Skin, Deep Nourishment, Repair Skin, All Skin Types)",
+                link: "https://amzn.to/4l3xUAQ",
+                badge: "Cream",
+                features: [
+                    "Brand-Maliao",
+                    "Age Range-Adult",
+                    "Special Feature-Antioxidant",
+                    "Active Ingredients-Collagen, Vitamin C , Oil Extracted from Natural plants, Brighten the Skin",
+                    "Skin Type-All",
+                    "Number of Items-1",
+                    "Scent-Orange",
+                    "Item Form-Cream",
+                    "Net Quantity-40.0 Grams",
+                    "Special Ingredients-Carrot seed oil"
+                ]
+            },
+            {
+                id: 41,
+                name: "Garnier Bright Complete Serum Cleanser 100gm",
+                price: "203",
+                image: "https://m.media-amazon.com/images/I/619MxRl7SBL._SX679_.jpg",
+                category: "Garnier",
+                description: "Garnier Bright Complete Serum Cleanser 100gm | Deep Cleansing Face Wash with Vitamin C for Brighter, Radiant Skin | Visibly Brighter Skin in One Wash for All Skin Types",
+                link: "https://amzn.to/40aPHOq",
+                badge: "Serum Cleanser",
+                features: [
+                    "Brand-Garnier",
+                    "Item Weight-100 Grams",
+                    "Item dimensions L x W x H-6 x 3.1 x 15.7 Centimeters",
+                    "Scent-Unscented",
+                    "Age Range-Adult",
+                    "Skin Type-All",
+                    "Product Benefits-Brightening",
+                    "Item Form-Liquid",
+                    "Number of Items-1",
+                    "Net Quantity-100.0 Grams"
+                ]
+            },
+            {
+                id: 42,
+                name: "White Tone Face Matte Powder",
+                price: "198",
+                image: "https://m.media-amazon.com/images/I/61iXTkMI3XL._SX679_PIbundle-2,TopRight,0,0_AA679SH20_.jpg",
+                category: "Whitetone",
+                description: "FOGG White Tone Face Matte Powder For All Skin Types For, Get Oil-Free, Even-Toned Skin Instantly, 75G (Pack Of 2), Pink",
+                link: "https://amzn.to/3FQuKBD",
+                badge: "Powder",
+                features: [
+                    "Brand-FOGG",
+                    "Item Form-Loose",
+                    "Colour-Pink",
+                    "Finish Type-Matte",
+                    "Skin Type-All",
+                    "Coverage-Light",
+                    "Product Benefits-Softening,Smoothening",
+                    "Model Name-Face Powder for Women, Get Oil-Free, Even-Toned Skin Instantly, 75g (Pack of 2)",
+                    "Number of Items-2",
+                    "Special Feature-Brightening"
+                ]
+            },
+            {
+                id: 43,
+                name: "ZENEME Jewellery Set Gold Plated American Diamond",
+                price: "272",
+                image: "https://m.media-amazon.com/images/I/71R9eWfBtNL._SY695_.jpg",
+                category: "Jewellery",
+                description: "ZENEME Jewellery Set Gold Plated American Diamond Traditional Stylish Pendant Set, Ring, Bracelet with Earring Jewellery for Women & Girls",
+                link: "https://amzn.to/43OihaS",
+                badge: "Jewellery Set",
+                features: [
+                    "Clasp type-Lobster Clasp",
+                    "Material type-Brass",
+                    "Metal type-Brass",
+                    "Chain type-Rope",
+                    "Gem type-Cubic Zirconia",
+                    "Occasion type-Festive, Promise, Engagement, Wedding, Anniversary",
+                    "Country of Origin-India"
+                ]
+            },
+            {
+                id: 44,
+                name: "Acnos Premium Analogue Women's Rose-Gold Magnet Watch ",
+                price: "280",
+                image: "https://m.media-amazon.com/images/I/71nbOk-3qUL._SX679_.jpg",
+                category: "Watches",
+                description: "Acnos Premium Analogue Women's Rose-Gold Magnet Watch With Rosegold Bracelet With Gift Box - Metal",
+                link: "https://amzn.to/3TsOX3u",
+                badge: "Watch And Bracelet",
+                features: [
+                    "Case diameter-5 Millimetres",
+                    "Band colour-Rose Gold",
+                    "Band material type-Platinum",
+                    "Warranty type-Manufacturer",
+                    "Watch movement type-Quartz",
+                    "Item weight-250 Grams",
+                    "Country of Origin-India"  
+                ]
+            }
         ];
-        
+
         // DOM Elements
         const productsGrid = document.getElementById('products-grid');
         const pagination = document.getElementById('pagination');
-        const categoryLinks = document.querySelectorAll('.category-nav a');
+        const categoryList = document.getElementById('category-list');
+        const alphabetNav = document.getElementById('alphabet-nav');
+        const searchInput = document.getElementById('search-input');
+        const productModal = document.getElementById('product-modal');
+        const modalBody = document.getElementById('modal-body');
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
 
-        // Pagination variables
+        // State variables
         const itemsPerPage = 12;
         let currentPage = 1;
         let filteredProducts = [...products];
         let currentCategory = 'all';
+        let currentSearchTerm = '';
+        let currentAlphabetFilter = '';
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
+            initAlphabetNavigation();
+            renderCategories();
             renderProducts();
             setupPagination();
-            setupCategoryNavigation();
+            window.addEventListener('scroll', handleScroll);
         });
+
+        // Initialize alphabet navigation
+        function initAlphabetNavigation() {
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            
+            // Create "All" button
+            const allButton = document.createElement('button');
+            allButton.textContent = 'ALL';
+            allButton.classList.add('active');
+            allButton.addEventListener('click', () => filterByAlphabet(''));
+            alphabetNav.appendChild(allButton);
+            
+            // Create A-Z buttons
+            for (let letter of alphabet) {
+                const button = document.createElement('button');
+                button.textContent = letter;
+                button.addEventListener('click', () => filterByAlphabet(letter));
+                alphabetNav.appendChild(button);
+            }
+        }
+
+        // Render categories
+        function renderCategories() {
+            // Get unique categories
+            const categories = ['all', ...new Set(products.map(product => product.category))];
+            
+            categories.forEach(category => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.dataset.category = category;
+                
+                if (category === 'all') {
+                    a.innerHTML = '<i class="fas fa-star"></i> All Items';
+                    a.classList.add('active');
+                } else {
+                    a.innerHTML = `<i>${category}</i>`;
+                }
+                
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    filterByCategory(category);
+                });
+                
+                li.appendChild(a);
+                categoryList.appendChild(li);
+            });
+        }
+
+        // Filter by alphabet
+        function filterByAlphabet(letter) {
+            currentAlphabetFilter = letter;
+            
+            // Update active state
+            const buttons = alphabetNav.querySelectorAll('button');
+            buttons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter categories
+            const categoryLinks = categoryList.querySelectorAll('a');
+            categoryLinks.forEach(link => {
+                const category = link.dataset.category;
+                if (letter === '' || category.charAt(0).toUpperCase() === letter) {
+                    link.style.display = 'flex';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+            
+            // Scroll to category nav
+            document.querySelector('.category-nav').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Filter by category
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Update active state
+            const categoryLinks = categoryList.querySelectorAll('a');
+            categoryLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.category === category) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Filter products
+            if (category === 'all') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(product => product.category === category);
+            }
+            
+            // Apply search filter if any
+            if (currentSearchTerm) {
+                filteredProducts = filteredProducts.filter(product => 
+                    product.name.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+                    product.description.toLowerCase().includes(currentSearchTerm.toLowerCase())
+                );
+            }
+            
+            // Reset to first page
+            currentPage = 1;
+            renderProducts();
+            setupPagination();
+        }
+
+        // Filter products based on search input
+        function filterProducts() {
+            currentSearchTerm = searchInput.value;
+            
+            if (currentCategory === 'all') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(product => product.category === currentCategory);
+            }
+            
+            if (currentSearchTerm) {
+                filteredProducts = filteredProducts.filter(product => 
+                    product.name.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+                    product.description.toLowerCase().includes(currentSearchTerm.toLowerCase())
+                );
+            }
+            
+            currentPage = 1;
+            renderProducts();
+            setupPagination();
+        }
 
         // Render products for current page
         function renderProducts() {
             productsGrid.innerHTML = '';
             
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3 style="color: #666; margin-bottom: 10px;">No products found</h3>
+                        <p style="color: #999;">Try adjusting your search or filter criteria</p>
+                    </div>
+                `;
+                pagination.innerHTML = '';
+                return;
+            }
+            
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const currentProducts = filteredProducts.slice(startIndex, endIndex);
-            
-            if (currentProducts.length === 0) {
-                productsGrid.innerHTML = '<p class="no-results" style="grid-column:1/-1;text-align:center;padding:40px;font-size:1.2rem;">No products found matching your criteria</p>';
-                return;
-            }
             
             currentProducts.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
                     <div class="product-image-container">
-                        <img class="product-image" src="${product.image}" alt="${product.name}">
+                        <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
                         <span class="product-category">${product.category}</span>
                         ${product.badge ? `<span class="product-highlight">${product.badge}</span>` : ''}
                     </div>
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p class="product-description">${product.description}</p>
-                        <p class="product-price">₹${product.price}</p>
-                        <a href="${product.link}" target="_blank" class="buy-btn">Add to Cart</a>
+                        <div class="product-features">
+                            <ul>
+                                ${product.features.slice(0, 3).map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <p class="product-price">${product.price}</p>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="${product.link}" target="_blank" class="buy-btn">Add to Cart</a>
+                            <button class="buy-btn" onclick="openQuickView(${product.id})" style="background: #777;">Quick View</button>
+                        </div>
                     </div>
                 `;
                 
@@ -1288,10 +2079,63 @@
             });
         }
 
+        // Open quick view modal
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            modalBody.innerHTML = `
+                <div class="modal-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="modal-details">
+                    <span class="product-category">${product.category}</span>
+                    ${product.badge ? `<span class="product-highlight">${product.badge}</span>` : ''}
+                    <h2>${product.name}</h2>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-features">
+                        <ul>
+                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <p class="product-price">${product.price}</p>
+                    <a href="${product.link}" target="_blank" class="buy-btn">Add to Cart</a>
+                </div>
+            `;
+            
+            productModal.style.display = 'block';
+            setTimeout(() => {
+                productModal.style.opacity = '1';
+                document.querySelector('.modal-content').style.transform = 'scale(1)';
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            productModal.style.opacity = '0';
+            document.querySelector('.modal-content').style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                productModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                closeModal();
+            }
+        });
+
         // Setup pagination buttons
         function setupPagination() {
             pagination.innerHTML = '';
             const pageCount = Math.ceil(filteredProducts.length / itemsPerPage);
+            
+            if (pageCount <= 1) return;
             
             // Previous button
             if (currentPage > 1) {
@@ -1302,7 +2146,7 @@
                     currentPage--;
                     renderProducts();
                     setupPagination();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: productsGrid.offsetTop - 100, behavior: 'smooth' });
                 });
                 pagination.appendChild(prevBtn);
             }
@@ -1325,7 +2169,7 @@
                     currentPage = i;
                     renderProducts();
                     setupPagination();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: productsGrid.offsetTop - 100, behavior: 'smooth' });
                 });
                 pagination.appendChild(pageBtn);
             }
@@ -1339,39 +2183,25 @@
                     currentPage++;
                     renderProducts();
                     setupPagination();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: productsGrid.offsetTop - 100, behavior: 'smooth' });
                 });
                 pagination.appendChild(nextBtn);
             }
         }
-        
-        // Setup category navigation
-        function setupCategoryNavigation() {
-            categoryLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // Update active link
-                    categoryLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                    
-                    // Get category
-                    const category = link.dataset.category;
-                    currentCategory = category;
-                    
-                    // Filter products
-                    if (category === 'all') {
-                        filteredProducts = [...products];
-                    } else {
-                        filteredProducts = products.filter(product => product.category === category);
-                    }
-                    
-                    // Reset pagination
-                    currentPage = 1;
-                    renderProducts();
-                    setupPagination();
-                });
-            });
+
+        // Handle scroll event
+        function handleScroll() {
+            // Show/hide scroll to top button
+            if (window.pageYOffset > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Theme Toggle
@@ -1389,7 +2219,29 @@
                 btn.style.color = 'var(--charcoal)';
             }
         }
+
+        // Toggle filter modal (placeholder)
+        function toggleFilterModal() {
+            showToast('Filter functionality coming soon!');
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            // Create toast element if it doesn't exist
+            let toast = document.querySelector('.toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+            
+            toast.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+            toast.classList.add('visible');
+            
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 3000);
+        }
     </script>
 </body>
 </html>
-        
